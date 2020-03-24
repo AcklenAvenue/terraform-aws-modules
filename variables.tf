@@ -8,7 +8,6 @@ variable "name_prefix" {}
 #instance.sprint0_bastion
 variable "dev_instance_type" { default = "t2.micro" }
 variable "dev_ami" {}
-variable "name_prefix" {}
 variable "key_name" {}
 variable "bastion_sg_id" {}
 variable "public1_subnet_id" {}
@@ -71,7 +70,6 @@ variable "record_ttl" { default = 300 }
 variable "vpc_cidr" {}
 variable "enable_dns_host" { default = true }
 variable "enable_dns_support" { default = true }
-variable "name_prefix" {}
 #eip.sprint0_eip
 variable "eip_vpc" { default = true }
 #route_table.sprint0_public_rt
@@ -79,9 +77,6 @@ variable "rt_public_cidr" { default = "0.0.0.0/0" }
 #default_route_table.sprint0_private_rt
 variable "rt_private_cidr" { default = "0.0.0.0/0" }
 #subnet.sprint0_public1_subnet
-variable "cidrs" {
-  type = map(string)
-}
 variable "public_ip_map" { default = true }
 #subnet.sprint0_private1_subnet
 variable "private_ip_map" { default = false }
@@ -93,30 +88,22 @@ data "aws_availability_zones" "available" {}
 #### RDS ####
 
 #terraform s3
-variable "bucket" {}
 variable "aws_region" {}
 #db_snapshot.db_snapshot
 variable "most_recent" { default = true }
 variable "db_snapshot_name" {}
 #db_instance.db_uat
 variable "db_instance_type" { default = "db.t2.micro" }
-variable "name_prefix" {}
 variable "db_username" {}
 variable "db_password" {}
 variable "db_subnet_group_name" {}
 variable "vpc_security_group_ids" {}
 variable "db_skip_final_snap" { default = true }
 variable "db_public_access" { default = true }
-#route53_record.dns_record
-variable "zone_id" {}
-variable "hosted_zone_name" {}
-variable "record_type" { default = "CNAME" }
-variable "record_ttl" { default = 300 }
 
 #### SECURITY ####
 
 #security_group.sprint0_bastion_sg
-variable "name_prefix" {}
 variable "vpc_id" {}
 variable "allowed_ssh_ip" {}
 variable "bastion_egress_cidr" { default = ["0.0.0.0/0"] }
