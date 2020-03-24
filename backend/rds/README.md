@@ -2,40 +2,48 @@
 
 > __*__ -> shared variable between resources
 
+Variable types:
+  - string  = mytext
+  - number  = 123
+  - list    = [ "string1", "string2" ]
+  - boolean = `true`
+
+---
+
 #### terraform s3
-| variable    | default value |
-|:------------|:------------- |
-| bucket      |               |
-| aws_region* |               |
+| variable    | default value | type    |
+|:------------|:------------- |:------- |
+| bucket      |               | string  |
+| aws_region* |               | string  |
 
 #### provider aws
-| variable    | default value |
-|:------------|:------------- |
-| aws_region* |               |
+| variable    | default value | type    |
+|:------------|:------------- |:------- |
+| aws_region* |               | string  |
 
 #### db_snapshot.db_snapshot
-| variable         | default value |
-|:---------------- |:------------- |
-| most_recent      | `true`        |
-| db_snapshot_name |               |
+| variable         | default value | type    |
+|:---------------- |:------------- |:------- |
+| most_recent      | `true`        | boolean |
+| db_snapshot_name |               | string  |
 
 ##### db_instance.db_uat
-| variable               | default value |
-|:--------------------   |:------------- |
-| db_instance_type       | "db.t2.micro" |
-| name_prefix*           |               |
-| db_username            |               |
-| db_password            |               |
-| db_subnet_group_name   |               |
-| vpc_security_group_ids |               |
-| db_skip_final_snap     | `true`        |
-| db_public_access       | `true`        |
+| variable               | default value | type    |
+|:--------------------   |:------------- |:------- |
+| db_instance_type       | "db.t2.micro" | string  |
+| name_prefix*           |               | string  |
+| db_username            |               | string  |
+| db_password            |               | string  |
+| db_subnet_group_name   |               | string  |
+| vpc_security_group_ids |               | list    |
+| db_skip_final_snap     | `true`        | boolean |
+| db_public_access       | `true`        | boolean |
 
 #### route53_record.dns_record
-| variable         | default value |
-|:-----------------|:------------- |
-| zone_id          |               |
-| name_prefix*     |               |
-| hosted_zone_name |               |
-| record_type      | "CNAME"       |
-| record_ttl       | 300           |
+| variable         | default value | type   |
+|:-----------------|:------------- |:------ |
+| zone_id          |               | string |
+| name_prefix*     |               | string |
+| hosted_zone_name |               | string |
+| record_type      | "CNAME"       | string |
+| record_ttl       | 300           | number |

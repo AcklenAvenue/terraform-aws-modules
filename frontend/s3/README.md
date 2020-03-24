@@ -2,39 +2,47 @@
 
 > __*__ -> shared variable between resources
 
+Variable types:
+  - string  = mytext
+  - number  = 123
+  - list    = [ "string1", "string2" ]
+  - boolean = `true`
+
+---
+
 #### s3_bucket.web_bucket
-| variable       | default value |
-|:-------------- |:------------- |
-| name           |               |
-| bucket_acl     | "public-read" |
-| bucket_destroy | `true`        |
-| index_doc*     | "index.html"  |
+| variable       | default value | type    |
+|:-------------- |:------------- |:------- |
+| name           |               | string  |
+| bucket_acl     | "public-read" | string  |
+| bucket_destroy | `true`        | boolean |
+| index_doc*     | "index.html"  | string  |
 
 #### locals
-| variable       | default value |
-|:-------------- |:------------- |
-| name_prefix*   |               |
+| variable       | default value | type    |
+|:-------------- |:------------- |:------- |
+| name_prefix*   |               | string  |
 
 #### cloudfront_origin_access_identity.frontend_origin_access_identity
-| variable       | default value |
-|:-------------- |:------------- |
-| name_prefix*   |               |
+| variable       | default value | type    |
+|:-------------- |:------------- |:------- |
+| name_prefix*   |               | string  |
 
 #### route53_record.frontend-alias-dns-record
-| variable           | default value |
-|:-----------------  |:------------- |
-| zone_id            |               |
-| name_prefix*       |               |
-| hosted_zone_name*  |               |
-| record_type        | "A"           |
-| eval_target_health | `true`        |
+| variable           | default value | type    |
+|:-----------------  |:------------- |:------- |
+| zone_id            |               | string  |
+| name_prefix*       |               | string  |
+| hosted_zone_name*  |               | string  |
+| record_type        | "A"           | string  |
+| eval_target_health | `true`        | boolean |
 
 #### cloudfront_distribution.frontend_s3_distribution
-| variable            | default value |
-|:-----------------   |:------------- |
-| name_prefix*        |               |
-| hosted_zone_name*   |               |
-| cf_distrib_enabled  | `true`        |
-| cf_distrib_ipv6     | `true`        |
-| index_doc*          |               |
-| aws_certificate_arn |               |
+| variable            | default value | type    |
+|:-----------------   |:------------- |:------- |
+| name_prefix*        |               | string  |
+| hosted_zone_name*   |               | string  |
+| cf_distrib_enabled  | `true`        | boolean |
+| cf_distrib_ipv6     | `true`        | boolean |
+| index_doc*          | "index.html"  | string  |
+| aws_certificate_arn |               | string  |
