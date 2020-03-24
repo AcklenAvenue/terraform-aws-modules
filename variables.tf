@@ -9,14 +9,8 @@ variable "name_prefix" {}
 variable "dev_instance_type" { default = "t2.micro" }
 variable "dev_ami" {}
 variable "key_name" {}
-variable "bastion_sg_id" {}
-variable "public1_subnet_id" {}
 #instance.ec2-first
 variable "lc_instance_type" {}
-variable "sprint0_private_sg" {}
-variable "private1_subnet_id" {}
-#instance.ec2-second
-variable "private2_subnet_id" {}
 #s3_bucket_object.uploadfile
 variable "bucket" {}
 variable "project" {}
@@ -24,8 +18,6 @@ variable "branch" {}
 #acm_certificate.certificate
 variable "hosted_zone_name" {}
 #elb.sprint0_elb
-variable "public2_subnet_id" {}
-variable "sprint0_public_sg" {}
 variable "listeners" {
   type = list(
     object({
@@ -104,8 +96,6 @@ variable "db_public_access" { default = true }
 #### SECURITY ####
 
 #security_group.sprint0_bastion_sg
-variable "vpc_id" {}
-variable "allowed_ssh_ip" {}
 variable "bastion_egress_cidr" { default = ["0.0.0.0/0"] }
 #security_group.sprint0_public_sg
 variable "public_sg_ingress" {
