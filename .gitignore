@@ -1,0 +1,5 @@
+modules/cloudwatch/variables.tf
+modules/ec2/variables.tf
+modules/network/variables.tf
+modules/rds/variables.tf
+modules/security/variables.tf
