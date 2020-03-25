@@ -5,13 +5,6 @@ provider "aws" {
 
 }
 
-terraform {
-  backend "s3" {
-    bucket = "acklen-terraform-state"
-    region = "us-east-1"
-  }
-}
-
 module "network-sprint-0" {
   source      = "./modules/network"
   vpc_cidr    = "${var.vpc_cidr}"
