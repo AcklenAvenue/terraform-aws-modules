@@ -8,8 +8,6 @@ Variable types:
   - list    = [ "string1", "string2" ]
   - boolean = `true`
 
----
-
 #### s3_bucket.web_bucket
 | variable       | default value | type    |
 |:-------------- |:------------- |:------- |
