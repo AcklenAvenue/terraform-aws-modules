@@ -11,10 +11,10 @@ Variable types:
 ---
 retention_days
 #### cloudwatch_log_group.loggroup
-| variable     | default value | type   |
-|:-------------|:------------- |:------ |
-| name_prefix* |               | string |
-| retention_days |               | number |
+| variable       | default value | type   |
+|:-------------  |:------------- |:------ |
+| name_prefix*   |               | string |
+| retention_days | 5             | number |
 
 #### cloudwatch_log_group.logstream
 | variable     | default value | type   |
