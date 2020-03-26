@@ -9,11 +9,12 @@ Variable types:
   - boolean = `true`
 
 ---
-
+retention_days
 #### cloudwatch_log_group.loggroup
 | variable     | default value | type   |
 |:-------------|:------------- |:------ |
 | name_prefix* |               | string |
+| retention_days |               | number |
 
 #### cloudwatch_log_group.logstream
 | variable     | default value | type   |
