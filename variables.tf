@@ -79,8 +79,6 @@ data "aws_availability_zones" "available" {}
 
 #### RDS ####
 
-#terraform s3
-variable "aws_region" {}
 #db_snapshot.db_snapshot
 variable "most_recent" { default = true }
 variable "db_snapshot_name" {}
