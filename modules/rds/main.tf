@@ -1,15 +1,4 @@
 
-terraform {
-  backend "s3" {
-    bucket = var.bucket
-    region = var.aws_region
-  }
-}
-
-provider "aws" {
-  region = var.aws_region
-}
-
 data "aws_db_snapshot" "db_snapshot" {
   most_recent            = var.most_recent
   db_instance_identifier = var.db_snapshot_name
@@ -28,5 +17,6 @@ resource "aws_db_instance" "db_uat" {
 
   tags = {
     Name = "${var.name_prefix}-rds"
+    Project =var.name_prefix
   }
 }
