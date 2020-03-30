@@ -1,4 +1,3 @@
-
 data "aws_db_snapshot" "db_snapshot" {
   most_recent            = var.most_recent
   db_instance_identifier = var.db_snapshot_name
