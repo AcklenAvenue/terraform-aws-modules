@@ -9,18 +9,6 @@ Variable types:
   - boolean = `true`
 
 ---
-
-#### terraform s3
-| variable    | default value | type    |
-|:------------|:------------- |:------- |
-| bucket      |               | string  |
-| aws_region* |               | string  |
-
-#### provider aws
-| variable    | default value | type    |
-|:------------|:------------- |:------- |
-| aws_region* |               | string  |
-
 #### db_snapshot.db_snapshot
 | variable         | default value | type    |
 |:---------------- |:------------- |:------- |
