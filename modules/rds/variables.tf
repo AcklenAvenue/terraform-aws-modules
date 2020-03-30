@@ -1,6 +1,3 @@
-#terraform s3
-variable "bucket" {}
-variable "aws_region" {}
 #db_snapshot.db_snapshot
 variable "most_recent" { default = true }
 variable "db_snapshot_name" {}
