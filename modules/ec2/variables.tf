@@ -11,7 +11,3 @@ variable "sprint0_private_sg" {}
 variable "private1_subnet_id" {}
 #instance.ec2-second
 variable "private2_subnet_id" {}
-#s3_bucket_object.uploadfile
-variable "bucket" {}
-variable "project" {}
-variable "branch" {}

@@ -40,10 +40,3 @@ resource "aws_instance" "ec2-second" {
   subnet_id              = var.private2_subnet_id
   depends_on             = [aws_instance.ec2-first]
 }
-
-resource "aws_s3_bucket_object" "uploadfile" {
-  bucket     = "${var.bucket}"
-  key        = "${var.project}/${var.branch}/aws_hosts"
-  source     = "aws_hosts"
-  depends_on = [aws_instance.ec2-second]
-}
