@@ -5,7 +5,7 @@ data "aws_acm_certificate" "certificate" {
 }
 
 resource "aws_elb" "sprint0_elb" {
-  name = "${var.name_prefix}-elb1"
+  name = "${var.name_prefix}-elb"
 
   subnets = [
     var.public1_subnet_id,
