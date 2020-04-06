@@ -1,6 +1,8 @@
 #acm_certificate.certificate
 variable "hosted_zone_name" {}
 #elb.sprint0_elb
+variable "name_prefix" {}
+variable "public1_subnet_id" {}
 variable "public2_subnet_id" {}
 variable "sprint0_public_sg" {}
 variable "listeners" {
