@@ -38,10 +38,7 @@ resource "aws_elb" "sprint0_elb" {
   connection_draining         = var.con_draining
   connection_draining_timeout = var.con_draining_timeout
 
-  instances = [
-    aws_instance.ec2-first.id,
-    aws_instance.ec2-second.id,
-  ]
+  instances = var.instances_id
 
   tags = {
     Name = "${var.name_prefix}-elb"
