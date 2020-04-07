@@ -1,7 +1,7 @@
 variable "name_prefix" {}
 variable "public1_subnet_id" {}
 variable "public2_subnet_id" {}
-variable "sprint0_public_sg" {}
+variable "security_groups" {}
 variable "vpc_id" {}
 variable "elb_healthy_threshold" {}
 variable "elb_unhealthy_threshold" {}

@@ -3,19 +3,22 @@ resource "aws_launch_configuration" "launchconfiguration" {
   image_id        = var.image_id
   instance_type   = var.lc_instance_type
   key_name        = var.key_name
-  security_groups = [var.sprint_private_sg]
+  security_groups = var.security_groups
 }
 
 resource "aws_autoscaling_group" "autoscaling-project" {
   name                      = "${var.name_prefix}-auto"
-  vpc_zone_identifier       = [var.private1_subnet_id, var.private2_subnet_id]
   launch_configuration      = aws_launch_configuration.launchconfiguration.name
   min_size                  = var.min_size_alb
   max_size                  = var.max_size_alb
   health_check_grace_period = var.health_check_grace_period
   health_check_type         = var.health_check_type
-  target_group_arns         = [var.app-lb-tgt-atscaling]
+  target_group_arns         = var.app-lb-tgt-atscaling
   force_delete              = var.force_delete
+  vpc_zone_identifier = [
+    var.private1_subnet_id,
+    var.private2_subnet_id
+  ]
 
   tag {
     key                 = "Name"

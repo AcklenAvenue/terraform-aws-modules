@@ -12,7 +12,7 @@ resource "aws_elb" "sprint0_elb" {
     var.public2_subnet_id,
   ]
 
-  security_groups = var.sprint0_public_sg
+  security_groups = var.security_groups
 
   dynamic "listener" {
     for_each = var.listeners
@@ -21,7 +21,7 @@ resource "aws_elb" "sprint0_elb" {
       instance_protocol  = listener.value.instance_protocol
       lb_port            = listener.value.lb_port
       lb_protocol        = listener.value.lb_protocol
-      ssl_certificate_id = (listener.value.lb_protocol == "https") ? data.aws_acm_certificate.certificate.arn : ""
+      ssl_certificate_id = (listener.value.lb_protocol == "https") ? data.aws_acm_certificate.certificate.arn : null
     }
   }
 

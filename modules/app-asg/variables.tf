@@ -2,7 +2,7 @@ variable "name_prefix" {}
 variable "image_id" {}
 variable "lc_instance_type" {}
 variable "key_name" {}
-variable "sprint_private_sg" {}
+variable "security_groups" {}
 variable "private1_subnet_id" {}
 variable "private2_subnet_id" {}
 variable "min_size_alb" {}

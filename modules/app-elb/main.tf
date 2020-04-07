@@ -10,10 +10,10 @@ resource "aws_lb" "application-loadbalancer" {
 
   subnets = [
     var.public1_subnet_id,
-    var.public2_subnet_id,
+    var.public2_subnet_id
   ]
 
-  security_groups = [var.sprint0_public_sg]
+  security_groups = var.security_groups
 
   enable_deletion_protection = var.enable_del_protection
   tags = {
@@ -70,8 +70,7 @@ resource "aws_lb_target_group" "app_lb_tgt_atscaling" {
 resource "aws_route53_record" "backend-dns-record" {
   zone_id = var.zone_id
   name    = "${var.name_prefix}.acklenavenueclient.com"
-  type    = "CNAME"
-  ttl     = "300"
+  type    = var.record_type
+  ttl     = var.ttl
   records = [aws_lb.application-loadbalancer.dns_name]
-
 }
