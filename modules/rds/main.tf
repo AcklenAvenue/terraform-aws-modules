@@ -15,7 +15,7 @@ resource "aws_db_instance" "db_uat" {
   publicly_accessible    = var.db_public_access
 
   tags = {
-    Name = "${var.name_prefix}-rds"
-    Project =var.name_prefix
+    Name    = "${var.name_prefix}-rds"
+    Project = var.name_prefix
   }
 }
