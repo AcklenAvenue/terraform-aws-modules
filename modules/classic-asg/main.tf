@@ -9,8 +9,8 @@ resource "aws_launch_configuration" "launchconfiguration" {
 resource "aws_autoscaling_group" "autoscaling-project" {
   name                      = "${var.name_prefix}-auto"
   launch_configuration      = aws_launch_configuration.launchconfiguration.name
-  min_size                  = var.min_size_alb
-  max_size                  = var.max_size_alb
+  min_size                  = var.min_size_asg
+  max_size                  = var.max_size_asg
   health_check_grace_period = var.health_check_grace_period
   health_check_type         = var.health_check_type
   load_balancers            = var.classic_lb_name

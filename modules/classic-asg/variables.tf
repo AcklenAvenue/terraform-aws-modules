@@ -5,8 +5,8 @@ variable "lc_instance_type" {}
 variable "key_name" {}
 variable "security_groups" {}
 #autoscaling_group.autoscaling-project
-variable "min_size_alb" {}
-variable "max_size_alb" {}
+variable "min_size_asg" {}
+variable "max_size_asg" {}
 variable "health_check_grace_period" {}
 variable "health_check_type" {}
 variable "classic_lb_name" {}
