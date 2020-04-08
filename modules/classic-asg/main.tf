@@ -13,7 +13,7 @@ resource "aws_autoscaling_group" "autoscaling-project" {
   max_size                  = var.max_size_asg
   health_check_grace_period = var.health_check_grace_period
   health_check_type         = var.health_check_type
-  load_balancers            = var.classic_lb_name
+  load_balancers            = var.classic_lb_names
   force_delete              = var.force_delete
   vpc_zone_identifier = [
     var.private1_subnet_id,
