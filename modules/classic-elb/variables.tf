@@ -38,7 +38,6 @@ variable "cross_zone_lb" { default = true }
 variable "idle_timeout" { default = 400 }
 variable "con_draining" { default = true }
 variable "con_draining_timeout" { default = 400 }
-variable "instances_id" {}
 #route53_record.backend-dns-record
 variable "zone_id" {}
 variable "record_type" { default = "CNAME" }
