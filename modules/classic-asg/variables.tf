@@ -10,7 +10,7 @@ variable "max_size_asg" {}
 variable "health_check_grace_period" { default = 300 }
 variable "health_check_type" { default = "ELB" }
 variable "classic_lb_names" {}
-variable "forc_delete" { default = true }
+variable "force_delete" { default = true }
 variable "private1_subnet_id" {}
 variable "private2_subnet_id" {}
 #autoscaling_schedule.schedule-turnoff
