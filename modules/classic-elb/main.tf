@@ -5,14 +5,14 @@ data "aws_acm_certificate" "certificate" {
 }
 
 resource "aws_elb" "sprint0_elb" {
-  name = "${var.name_prefix}-elb1"
+  name = "${var.name_prefix}-elb"
 
   subnets = [
     var.public1_subnet_id,
     var.public2_subnet_id,
   ]
 
-  security_groups = var.sprint0_public_sg
+  security_groups = var.security_groups
 
   dynamic "listener" {
     for_each = var.listeners
@@ -21,7 +21,7 @@ resource "aws_elb" "sprint0_elb" {
       instance_protocol  = listener.value.instance_protocol
       lb_port            = listener.value.lb_port
       lb_protocol        = listener.value.lb_protocol
-      ssl_certificate_id = (listener.value.lb_protocol == "https") ? data.aws_acm_certificate.certificate.arn : ""
+      ssl_certificate_id = (listener.value.lb_protocol == "https") ? data.aws_acm_certificate.certificate.arn : null
     }
   }
 
@@ -37,11 +37,6 @@ resource "aws_elb" "sprint0_elb" {
   idle_timeout                = var.idle_timeout
   connection_draining         = var.con_draining
   connection_draining_timeout = var.con_draining_timeout
-
-  instances = [
-    aws_instance.ec2-first.id,
-    aws_instance.ec2-second.id,
-  ]
 
   tags = {
     Name = "${var.name_prefix}-elb"
