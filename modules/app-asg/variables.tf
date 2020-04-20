@@ -5,9 +5,9 @@ variable "key_name" {}
 variable "security_groups" {}
 variable "private1_subnet_id" {}
 variable "private2_subnet_id" {}
-variable "min_size_alb" {}
-variable "max_size_alb" {}
-variable "health_check_grace_period" {}
+variable "min_size_asg" {}
+variable "max_size_asg" {}
+variable "health_check_grace_period" { default = 300 }
 variable "health_check_type" {}
 variable "app_lb_tgt_arns" {}
 variable "forc_delete" { default = true }
