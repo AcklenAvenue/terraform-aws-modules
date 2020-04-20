@@ -10,7 +10,7 @@ variable "max_size_asg" {}
 variable "health_check_grace_period" { default = 300 }
 variable "health_check_type" {}
 variable "app_lb_tgt_arns" {}
-variable "forc_delete" { default = true }
+variable "force_delete" { default = true }
 variable "turnoff_scheduled_action" { default = "Shutdown-Mon-Friday" }
 variable "turnoff_recurrence" { default = "0 0 * * 2-6" }
 variable "turnoff_min_size" { default = 0 }
@@ -22,3 +22,5 @@ variable "turnon_recurrence" { default = "30 12 * * 2-6" }
 variable "turnon_min_size" {}
 variable "turnon_max_size" {}
 variable "turnon_desired_capacity" {}
+variable "record_type" { default = "CNAME" }
+variable "record_ttl" { default = 300 }
