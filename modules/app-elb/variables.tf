@@ -21,3 +21,4 @@ variable "health_check_timeout" { default = 5 }
 variable "health_check_interval" { default = 10 }
 variable "record_type" { default = "CNAME" }
 variable "record_ttl" { default = "300" }
+variable "hosted_zone_name" {}

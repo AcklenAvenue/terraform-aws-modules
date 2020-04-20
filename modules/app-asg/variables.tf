@@ -9,7 +9,7 @@ variable "min_size_alb" {}
 variable "max_size_alb" {}
 variable "health_check_grace_period" {}
 variable "health_check_type" {}
-variable "app-lb-tgt-atscaling" {}
+variable "app_lb_tgt_arns" {}
 variable "forc_delete" { default = true }
 variable "turnoff_scheduled_action" { default = "Shutdown-Mon-Friday" }
 variable "turnoff_recurrence" { default = "0 0 * * 2-6" }
