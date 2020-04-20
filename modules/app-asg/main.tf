@@ -38,7 +38,7 @@ resource "aws_autoscaling_schedule" "schedule-turnoff" {
 
 resource "aws_autoscaling_schedule" "schedule-turnon" {
   autoscaling_group_name = aws_autoscaling_group.autoscaling-project.name
-  scheduled_action_name  = var.turnon_scheduled_time
+  scheduled_action_name  = var.turnon_scheduled_action
   recurrence             = var.turnon_recurrence
   min_size               = var.turnon_min_size
   max_size               = var.turnon_max_size
