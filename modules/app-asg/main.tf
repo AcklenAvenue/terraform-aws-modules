@@ -42,5 +42,5 @@ resource "aws_autoscaling_schedule" "schedule-turnon" {
   recurrence             = var.turnon_recurrence
   min_size               = var.turnon_min_size
   max_size               = var.turnon_max_size
-  desired_capacity       = var.turnon_min_size
+  desired_capacity       = var.turnon_desired_capacity
 }

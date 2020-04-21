@@ -1,8 +1,17 @@
 #security_group.sprint0_bastion_sg
-variable "name_prefix" {}
-variable "vpc_id" {}
-variable "allowed_ssh_ip" {}
-variable "bastion_egress_cidr" { default = ["0.0.0.0/0"] }
+variable "name_prefix" {
+  description = "The name of the security group"
+}
+variable "vpc_id" {
+  description = "The VPC ID"
+}
+variable "allowed_ssh_ip" {
+  description = "CIDR block to allow connection by SSH"
+}
+variable "bastion_egress_cidr" {
+  default = ["0.0.0.0/0"]
+  description = "CIDR blocks to allow outbound traffic"
+}
 #security_group.sprint0_public_sg
 variable "public_sg_ingress" {
   type = list(
@@ -27,10 +36,19 @@ variable "public_sg_ingress" {
       cidr_blocks = ["0.0.0.0/0"]
     }
   ]
+  description = "Can be specified multiple times for each ingress rule"
 }
-variable "public_egress_cidr" { default = ["0.0.0.0/0"] }
+variable "public_egress_cidr" {
+  default = ["0.0.0.0/0"]
+  description = "CIDR blocks to allow outbound traffic"
+}
 #security_group.sprint0_private_sg
 variable "private_ingress_cidr" {}
-variable "private_egress_cidr" { default = ["0.0.0.0/0"] }
+variable "private_egress_cidr" {
+  default = ["0.0.0.0/0"]
+  description = "CIDR blocks to allow inbound traffic"
+}
 #security_group.sprint0_rds_sg
-variable "db_port" {}
+variable "db_port" {
+  description = "The start port and the end range port"
+}

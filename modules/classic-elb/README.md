@@ -21,7 +21,7 @@ Variable types:
 | name_prefix*            |               | string  |
 | public1_subnet_id*      |               | string  |
 | public2_subnet_id       |               | string  |
-| sprint0_public_sg       |               | list    |
+| security_groups         |               | list    |
 | listeners               | [{instance_port = 80<br>instance_protocol = "http"<br>lb_port = 80<br>lb_protocol = "http"},<br>{instance_port = 80<br>instance_protocol = "http"<br>lb_port = 443<br>lb_protocol = "https"}] | object |
 | elb_healthy_threshold   |               | number  |
 | elb_unhealthy_threshold |               | number  |
@@ -32,7 +32,6 @@ Variable types:
 | idle_timeout            | 400           | number  |
 | con_draining            | ```true```    | boolean |
 | con_draining_timeout    | 400           | number  |
-| instances_id            |               | list    |
 
 #### route53_record.backend-dns-record
 | variable          | default value | type    |
