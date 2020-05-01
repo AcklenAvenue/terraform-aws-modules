@@ -50,7 +50,7 @@ Terraform basicly downloads the repo locally, so your _`$ Terraform init`_ won't
 
 Here is an example of _gitlab-ci.yml_ file using the remote modules
 
-```
+```yaml
 stages:
   - deploy
   - destroy
