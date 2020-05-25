@@ -20,7 +20,7 @@ output "private1_subnet_id" {
 
 output "private2_subnet_id" {
   description = "The id of the private2 subnet"
-  value       = aws_subnet.sprint0_private1_subnet.id
+  value       = aws_subnet.sprint0_private2_subnet.id
 }
 
 output "rds1_subnet_id" {
