@@ -159,7 +159,7 @@ resource "aws_route_table_association" "sprint0_private2_assoc" {
 }
 
 resource "aws_db_subnet_group" "sprint0_rds_subnetgroup" {
-  name = "${var.name_prefix}-subnetgroup-rds"
+  name = lower("${var.name_prefix}-subnetgroup-rds")
 
   subnet_ids = [
     aws_subnet.sprint0_rds1_subnet.id,
