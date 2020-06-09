@@ -5,7 +5,7 @@ data "aws_db_snapshot" "db_snapshot" {
 
 resource "aws_db_instance" "db_uat" {
   instance_class         = var.db_instance_type
-  identifier             = var.name_prefix
+  identifier             = lower(var.name_prefix)
   username               = var.db_username
   password               = var.db_password
   db_subnet_group_name   = var.db_subnet_group_name
