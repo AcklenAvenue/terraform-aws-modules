@@ -9,7 +9,7 @@ Variable types:
   - boolean = `true`
 
 ---
-retention_days
+
 #### cloudwatch_log_group.loggroup
 | variable       | default value | type   |
 |:-------------  |:------------- |:------ |
