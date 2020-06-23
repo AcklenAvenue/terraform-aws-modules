@@ -20,15 +20,12 @@ POLICY
 
   website {
     index_document = "${var.index_doc}"
+    error_document = "${var.error_doc}"
   }
 }
 
 locals {
   s3_origin_id = "${var.name_prefix}-origin"
-}
-
-resource "aws_cloudfront_origin_access_identity" "frontend_origin_access_identity" {
-  comment = "${var.name_prefix}-frontend origin access identity."
 }
 
 resource "aws_route53_record" "frontend-alias-dns-record" {
@@ -44,15 +41,16 @@ resource "aws_route53_record" "frontend-alias-dns-record" {
   depends_on = ["aws_cloudfront_distribution.frontend_s3_distribution"]
 }
 
-
-
 resource "aws_cloudfront_distribution" "frontend_s3_distribution" {
   origin {
-    domain_name = "${aws_s3_bucket.web_bucket.bucket_domain_name}"
+    domain_name = "${aws_s3_bucket.web_bucket.website_endpoint}"
     origin_id   = "${local.s3_origin_id}"
 
-    s3_origin_config {
-      origin_access_identity = "${aws_cloudfront_origin_access_identity.frontend_origin_access_identity.cloudfront_access_identity_path}"
+    custom_origin_config {
+      http_port              = "80"
+      https_port             = "443"
+      origin_protocol_policy = "http-only"
+      origin_ssl_protocols   = ["TLSv1"]
     }
   }
 
@@ -76,7 +74,7 @@ resource "aws_cloudfront_distribution" "frontend_s3_distribution" {
       }
     }
 
-    viewer_protocol_policy = "allow-all"
+    viewer_protocol_policy = "redirect-to-https"
     min_ttl                = 0
     default_ttl            = 3600
     max_ttl                = 86400

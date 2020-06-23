@@ -15,13 +15,9 @@ Variable types:
 | bucket_acl     | "public-read" | string  |
 | bucket_destroy | `true`        | boolean |
 | index_doc*     | "index.html"  | string  |
+| error_doc      | "index.html"  | string  |
 
 #### locals
-| variable       | default value | type    |
-|:-------------- |:------------- |:------- |
-| name_prefix*   |               | string  |
-
-#### cloudfront_origin_access_identity.frontend_origin_access_identity
 | variable       | default value | type    |
 |:-------------- |:------------- |:------- |
 | name_prefix*   |               | string  |
