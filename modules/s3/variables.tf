@@ -24,7 +24,7 @@ variable "name_prefix" {
 }
 #route53_record.frontend-alias-dns-record
 variable "zone_id" {
-    default = "The ID of the hosted zone to contain this record"
+    description = "The ID of the hosted zone to contain this record"
 }
 variable "hosted_zone_name" {
     description = "The name of the hosted zone name"
