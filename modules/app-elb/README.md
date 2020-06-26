@@ -19,21 +19,21 @@ Variable types:
 | variable                  | default value | type     |
 |:---------------------     |:------------- |:-------- |
 | name_prefix*              |               | string   |
-| lb_internal               | false         | boolean  |
-| lb_type                   | application   | string   |
+| lb_internal               | `false`       | boolean  |
+| lb_type                   | "application" | string   |
 | public1_subnet_id         |               | string   |
 | public2_subnet_id         |               | string   |
 | security_groups           |               | list     |
-| enable_del_protection     | false         | boolean  |
+| enable_del_protection     | `false`       | boolean  |
 
 #### aws_lb_target_group.app_lb_tgt_atscaling
 | variable              | default value | type    |
 |:------------------    |:------------  |:------- |
 | name_prefix*          |               | string  |
 | target_group_port     | 5000          | number  |
-| target_group_protocol | HTTP          | string  |
+| target_group_protocol | "HTTP"        | string  |
 | vpc_id                |               | string  |
-| health_check_protocol | HTTP          | string  |
+| health_check_protocol | "HTTP"        | string  |
 | health_check_path     | /api/status   | string  |
 | healthy_threshold     | 3             | number  |
 | unhealthy_threshold   | 10            | number  |
