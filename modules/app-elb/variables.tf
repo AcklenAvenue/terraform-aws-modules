@@ -68,10 +68,10 @@ variable "zone_id" {
     description = "The ID of the hosted zone to contain this record"
 }
 variable "record_type" {
-    default = "CNAME"
+    default = "A"
     description = "The record type"
 }
-variable "record_ttl" {
-    default = 300
-    description = "The TTL of the record"
+variable "eval_target_health" {
+    default = false
+    description = "Set to true if you want Route53 to determine whether to respond to DNS queries using this resource record set by checking the health"
 }

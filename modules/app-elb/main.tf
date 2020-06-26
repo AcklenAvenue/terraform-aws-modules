@@ -71,6 +71,10 @@ resource "aws_route53_record" "backend-dns-record" {
   name    = "${var.name_prefix}.${var.hosted_zone_name}"
   zone_id = var.zone_id
   type    = var.record_type
-  ttl     = var.record_ttl
-  records = [aws_lb.application-loadbalancer.dns_name]
+
+  alias {
+    name                   = aws_lb.application-loadbalancer.dns_name
+    zone_id                = aws_lb.application-loadbalancer.zone_id
+    evaluate_target_health = var.eval_target_health
+  }
 }

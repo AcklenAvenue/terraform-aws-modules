@@ -47,6 +47,10 @@ resource "aws_route53_record" "backend-dns-record" {
   zone_id = var.zone_id
   name    = "${var.name_prefix}.${var.hosted_zone_name}"
   type    = var.record_type
-  ttl     = var.record_ttl
-  records = [aws_elb.sprint0_elb.dns_name]
+
+  alias {
+    name                   = aws_elb.sprint0_elb.dns_name
+    zone_id                = aws_elb.sprint0_elb.zone_id
+    evaluate_target_health = var.eval_target_health
+  }
 }

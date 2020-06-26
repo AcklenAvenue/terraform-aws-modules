@@ -41,10 +41,10 @@ Variable types:
 | health_check_interval | 10            | number  |
 
 #### route53_record.backend-dns-record
-| variable          | default value | type    |
-|:----------------- |:------------- |:------- |
-| name_prefix*      |               | string  |
-| hosted_zone_name* |               | string  |
-| zone_id           |               | string  |
-| record_type       | "CNAME"       | string  |
-| record_ttl        | 300           | number  |
+| variable           | default value | type    |
+|:-----------------  |:------------- |:------- |
+| name_prefix*       |               | string  |
+| hosted_zone_name*  |               | string  |
+| zone_id            |               | string  |
+| record_type        | "A"           | string  |
+| eval_target_health | `false`       | boolean |
