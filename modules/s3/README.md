@@ -18,9 +18,10 @@ Variable types:
 | error_doc      | "index.html"  | string  |
 
 #### locals
-| variable       | default value | type    |
-|:-------------- |:------------- |:------- |
-| name_prefix*   |               | string  |
+| variable       | default value    | type    |
+|:-------------- |:-------------    |:------- |
+| name_prefix*   |                  | string  |
+| project        | "Project's name" | string  |
 
 #### route53_record.frontend-alias-dns-record
 | variable           | default value | type    |
