@@ -1,7 +1,7 @@
 resource "aws_s3_bucket" "web_bucket" {
-  bucket        = "${var.name}"
-  acl           = "${var.bucket_acl}"
-  force_destroy = "${var.bucket_destroy}"
+  bucket        = var.name
+  acl           = var.bucket_acl
+  force_destroy = var.bucket_destroy
 
   policy = <<POLICY
 {
@@ -19,8 +19,13 @@ resource "aws_s3_bucket" "web_bucket" {
 POLICY
 
   website {
-    index_document = "${var.index_doc}"
-    error_document = "${var.error_doc}"
+    index_document = var.index_doc
+    error_document = var.error_doc
+  }
+
+  tags = {
+    Name        = var.name_prefix
+    Project     = var.project
   }
 }
 
@@ -29,13 +34,13 @@ locals {
 }
 
 resource "aws_route53_record" "frontend-alias-dns-record" {
-  zone_id = "${var.zone_id}"
+  zone_id = var.zone_id
   name    = "${var.name_prefix}-frontend.${var.hosted_zone_name}"
-  type    = "${var.record_type}"
+  type    = var.record_type
   alias {
     name                   = "${aws_cloudfront_distribution.frontend_s3_distribution.domain_name}"
     zone_id                = "${aws_cloudfront_distribution.frontend_s3_distribution.hosted_zone_id}"
-    evaluate_target_health = "${var.eval_target_health}"
+    evaluate_target_health = var.eval_target_health
   }
 
   depends_on = ["aws_cloudfront_distribution.frontend_s3_distribution"]

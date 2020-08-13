@@ -49,3 +49,6 @@ variable "cf_distrib_ipv6" {
 variable "aws_certificate_arn" {
     description = "The ARN of the AWS Certificate Manager certificate that you wish to use with this distribution"
 }
+variable "project" {
+    description = "The project's name"
+}
