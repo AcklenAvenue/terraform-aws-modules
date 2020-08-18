@@ -4,7 +4,6 @@ resource "aws_launch_configuration" "bastion" {
   instance_type               = var.instance_type
   key_name                    = var.key_name
   associate_public_ip_address = true
-
   security_groups = [
     aws_security_group.ssh.id,
     aws_security_group.consul.id
