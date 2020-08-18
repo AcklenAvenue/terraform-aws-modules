@@ -20,6 +20,7 @@ resource "aws_security_group" "ssh" {
   tags = {
     Name    = var.name
     Project = var.name
+    Rule    = "ssh"
   }
 }
 
@@ -73,9 +74,9 @@ resource "aws_security_group" "consul" {
   tags = {
     Name    = var.name
     Project = var.name
+    Rule    = "consul"
   }
 }
-
 
 resource "aws_security_group" "loadbalancer" {
   name        = "${var.name}-loadbalancer"

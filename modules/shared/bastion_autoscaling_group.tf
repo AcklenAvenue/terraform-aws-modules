@@ -4,6 +4,7 @@ resource "aws_launch_configuration" "bastion" {
   instance_type               = var.instance_type
   key_name                    = var.key_name
   associate_public_ip_address = true
+
   security_groups = [
     aws_security_group.ssh.id,
     aws_security_group.consul.id
@@ -12,8 +13,8 @@ resource "aws_launch_configuration" "bastion" {
   user_data = templatefile("${path.module}/files/init_consul.sh", {
     AWS_ACCESS_KEY_ID     = var.aws_access_key_id,
     AWS_SECRET_ACCESS_KEY = var.aws_secret_access_key,
-    AWS_REGION            = var.aws_region
-    DATACENTER            = var.name
+    AWS_REGION            = var.aws_region,
+    DATACENTER            = var.name,
     CONSUL_CLUSTER_TAG    = "${var.name}-bastion"
   })
 }
