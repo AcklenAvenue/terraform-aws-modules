@@ -13,38 +13,14 @@ module "network" {
   }
 }
 
-resource "aws_instance" "bastion" {
-  instance_type          = var.instance_type
-  ami                    = var.ami
-  key_name               = var.key_name
-  vpc_security_group_ids = [aws_security_group.security_group.id]
-  subnet_id              = module.network.public1_subnet_id
+# resource "aws_instance" "bastion" {
+#   instance_type          = var.instance_type
+#   ami                    = data.
+#   key_name               = var.key_name
+#   vpc_security_group_ids = [aws_security_group.security_group.id]
+#   subnet_id              = module.network.public1_subnet_id
 
-  tags = {
-    Name = "${var.name}-bastion"
-  }
-}
-
-resource "aws_security_group" "security_group" {
-  name        = "${var.name}-bastion"
-  description = "Used for access to the bastion instance."
-  vpc_id      = module.network.vpc_id
-
-  ingress {
-    from_port   = 22
-    to_port     = 22
-    protocol    = "tcp"
-    cidr_blocks = ["0.0.0.0/0"]
-  }
-
-  egress {
-    from_port   = 0
-    to_port     = 0
-    protocol    = "-1"
-    cidr_blocks = ["0.0.0.0/0"]
-  }
-
-  tags = {
-    Name = var.name
-  }
-}
+#   tags = {
+#     Name = "${var.name}-bastion"
+#   }
+# }
