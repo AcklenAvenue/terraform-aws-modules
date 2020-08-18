@@ -1,14 +1,6 @@
 data "aws_security_group" "consul" {
   tags = {
-    Project = var.project,
-    Rule    = "consul"
-  }
-}
-
-data "aws_security_group" "ssh" {
-  tags = {
-    Project = var.project,
-    Rule    = "ssh"
+    Name = var.project
   }
 }
 
