@@ -4,7 +4,8 @@ resource "aws_vpc" "vpc" {
   enable_dns_support   = var.enable_dns_support
 
   tags = {
-    Name = var.name
+    Name    = var.name
+    Project = var.name
   }
 }
 
@@ -12,7 +13,8 @@ resource "aws_internet_gateway" "internet_gateway" {
   vpc_id = aws_vpc.vpc.id
 
   tags = {
-    Name = var.name
+    Name    = var.name
+    Project = var.name
   }
 }
 
@@ -21,7 +23,8 @@ resource "aws_eip" "eip" {
   depends_on = [aws_internet_gateway.internet_gateway]
 
   tags = {
-    Name = var.name
+    Name    = var.name
+    Project = var.name
   }
 }
 
@@ -34,7 +37,8 @@ resource "aws_route_table" "public_rt" {
   }
 
   tags = {
-    Name = "${var.name}-public"
+    Name    = "${var.name}-public"
+    Project = var.name
   }
 }
 
@@ -46,7 +50,8 @@ resource "aws_default_route_table" "private_rt" {
   }
 
   tags = {
-    Name = "${var.name}-private"
+    Name    = "${var.name}-private"
+    Project = var.name
   }
 }
 
@@ -56,6 +61,7 @@ resource "aws_nat_gateway" "nat" {
   depends_on    = [aws_internet_gateway.internet_gateway]
 
   tags = {
-    Name = "${var.name}"
+    Name    = "${var.name}"
+    Project = var.name
   }
 }

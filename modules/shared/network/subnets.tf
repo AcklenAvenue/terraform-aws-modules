@@ -5,7 +5,8 @@ resource "aws_subnet" "public1_subnet" {
   availability_zone       = data.aws_availability_zones.available.names[0]
 
   tags = {
-    Name = "${var.name}-public1"
+    Name    = "${var.name}-public1"
+    Project = var.name
   }
 }
 
@@ -16,7 +17,8 @@ resource "aws_subnet" "public2_subnet" {
   availability_zone       = data.aws_availability_zones.available.names[1]
 
   tags = {
-    Name = "${var.name}-public2"
+    Name    = "${var.name}-public2"
+    Project = var.name
   }
 }
 
@@ -27,7 +29,8 @@ resource "aws_subnet" "private1_subnet" {
   availability_zone       = data.aws_availability_zones.available.names[0]
 
   tags = {
-    Name = "${var.name}-private1"
+    Name    = "${var.name}-private1"
+    Project = var.name
   }
 }
 
@@ -38,7 +41,8 @@ resource "aws_subnet" "private2_subnet" {
   availability_zone       = data.aws_availability_zones.available.names[1]
 
   tags = {
-    Name = "${var.name}-private2"
+    Name    = "${var.name}-private2"
+    Project = var.name
   }
 }
 
@@ -49,7 +53,8 @@ resource "aws_subnet" "rds1_subnet" {
   availability_zone       = data.aws_availability_zones.available.names[0]
 
   tags = {
-    Name = "${var.name}-rds1"
+    Name    = "${var.name}-rds1"
+    Project = var.name
   }
 }
 
@@ -60,6 +65,7 @@ resource "aws_subnet" "rds2_subnet" {
   availability_zone       = data.aws_availability_zones.available.names[2]
 
   tags = {
-    Name = "${var.name}-rds2"
+    Name    = "${var.name}-rds2"
+    Project = var.name
   }
 }
