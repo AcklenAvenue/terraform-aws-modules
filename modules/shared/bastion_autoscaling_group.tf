@@ -52,36 +52,36 @@ resource "aws_autoscaling_group" "bastion" {
   ]
 }
 
-# resource "aws_autoscaling_policy" "cpu_policy" {
-#   name                      = "${var.name}-cpu"
-#   policy_type               = "TargetTrackingScaling"
-#   estimated_instance_warmup = "90"
-#   adjustment_type           = "ChangeInCapacity"
-#   autoscaling_group_name    = aws_autoscaling_group.bastion.name
+resource "aws_autoscaling_policy" "cpu_policy" {
+  name                      = "${var.name}-cpu"
+  policy_type               = "TargetTrackingScaling"
+  estimated_instance_warmup = "90"
+  adjustment_type           = "ChangeInCapacity"
+  autoscaling_group_name    = aws_autoscaling_group.bastion.name
 
-#   target_tracking_configuration {
-#     predefined_metric_specification {
-#       predefined_metric_type = "ASGAverageCPUUtilization"
-#     }
+  target_tracking_configuration {
+    predefined_metric_specification {
+      predefined_metric_type = "ASGAverageCPUUtilization"
+    }
 
-#     target_value = 40.0
-#   }
-# }
+    target_value = 40.0
+  }
+}
 
-# resource "aws_autoscaling_schedule" "schedule-turnoff" {
-#   autoscaling_group_name = aws_autoscaling_group.autoscaling-group.name
-#   scheduled_action_name  = "Shutdown-Mon-Friday"
-#   recurrence             = "0 0 * * 2-6"
-#   min_size               = 0
-#   max_size               = var.max_size
-#   desired_capacity       = 0
-# }
+resource "aws_autoscaling_schedule" "schedule-turnoff" {
+  autoscaling_group_name = aws_autoscaling_group.autoscaling-group.name
+  scheduled_action_name  = "Shutdown-Mon-Friday"
+  recurrence             = "0 0 * * 2-6"
+  min_size               = 0
+  max_size               = var.max_size
+  desired_capacity       = 0
+}
 
-# resource "aws_autoscaling_schedule" "schedule-turnon" {
-#   autoscaling_group_name = aws_autoscaling_group.autoscaling-group.name
-#   scheduled_action_name  = "Turn on-Mon-Friday"
-#   recurrence             = "30 12 * * 2-6"
-#   min_size               = var.min_size
-#   max_size               = var.max_size
-#   desired_capacity       = var.desired_capacity
-# }
+resource "aws_autoscaling_schedule" "schedule-turnon" {
+  autoscaling_group_name = aws_autoscaling_group.autoscaling-group.name
+  scheduled_action_name  = "Turn on-Mon-Friday"
+  recurrence             = "30 12 * * 2-6"
+  min_size               = var.min_size
+  max_size               = var.max_size
+  desired_capacity       = var.desired_capacity
+}
