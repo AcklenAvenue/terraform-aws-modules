@@ -69,19 +69,19 @@ resource "aws_autoscaling_policy" "cpu_policy" {
 }
 
 resource "aws_autoscaling_schedule" "schedule-turnoff" {
-  autoscaling_group_name = aws_autoscaling_group.autoscaling-group.name
+  autoscaling_group_name = aws_autoscaling_group.bastion.name
   scheduled_action_name  = "Shutdown-Mon-Friday"
   recurrence             = "0 0 * * 2-6"
   min_size               = 0
-  max_size               = var.max_size
   desired_capacity       = 0
+  max_size               = 0
 }
 
 resource "aws_autoscaling_schedule" "schedule-turnon" {
-  autoscaling_group_name = aws_autoscaling_group.autoscaling-group.name
+  autoscaling_group_name = aws_autoscaling_group.bastion.name
   scheduled_action_name  = "Turn on-Mon-Friday"
   recurrence             = "30 12 * * 2-6"
-  min_size               = var.min_size
-  max_size               = var.max_size
-  desired_capacity       = var.desired_capacity
+  min_size             = var.bastion_min_size
+  desired_capacity     = var.bastion_desired_capacity
+  max_size             = var.bastion_max_size
 }
