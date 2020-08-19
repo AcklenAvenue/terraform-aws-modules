@@ -27,7 +27,7 @@ resource "aws_launch_configuration" "review" {
 
 resource "aws_autoscaling_group" "autoscaling_group" {
   name                 = var.name
-  launch_configuration = aws_launch_configuration.launch_configuration.name
+  launch_configuration = aws_launch_configuration.review.name
   min_size             = 1
   max_size             = 2
   force_delete         = true

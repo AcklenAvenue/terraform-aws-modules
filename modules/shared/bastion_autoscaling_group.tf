@@ -10,7 +10,7 @@ resource "aws_launch_configuration" "bastion" {
     aws_security_group.consul.id
   ]
 
-  user_data = templatefile("${path.module}/files/init_consul.sh", {
+  user_data = templatefile("${path.module}/files/init.sh", {
     AWS_ACCESS_KEY_ID     = var.aws_access_key_id,
     AWS_SECRET_ACCESS_KEY = var.aws_secret_access_key,
     AWS_REGION            = var.aws_region,
