@@ -5,8 +5,8 @@ provider "aws" {
 }
 
 resource "aws_launch_configuration" "review" {
-  name                        = var.name
-  image_id                    = data.aws_ami.latest_ubuntu.id
+  name_prefix                 = var.name
+  image_id                    = "ami-0bcc094591f354be2"
   instance_type               = var.instance_type
   key_name                    = var.key_name
   associate_public_ip_address = false

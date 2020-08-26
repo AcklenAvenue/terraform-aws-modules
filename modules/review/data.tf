@@ -1,8 +1,3 @@
-data "aws_ami" "latest_ubuntu" {
-  most_recent = true
-  owners      = ["099720109477"]
-}
-
 data "aws_security_group" "consul" {
   tags = {
     Project = var.project,
