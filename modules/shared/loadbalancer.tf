@@ -92,27 +92,16 @@ resource "aws_lb_listener" "listener_443" {
   }
 }
 
-resource "aws_lb_listener" "listener_8500" {
-  load_balancer_arn = aws_lb.loadbalancer.arn
-  port              = "8500"
-  protocol          = "HTTPS"
-  ssl_policy        = "ELBSecurityPolicy-2016-08"
-  certificate_arn   = data.aws_acm_certificate.certificate.arn
+# resource "aws_lb_listener" "listener_8500" {
+#   load_balancer_arn = aws_lb.loadbalancer.arn
+#   port              = "8500"
+#   protocol          = "HTTPS"
+#   ssl_policy        = "ELBSecurityPolicy-2016-08"
+#   certificate_arn   = data.aws_acm_certificate.certificate.arn
 
-  default_action {
-    type             = "forward"
-    target_group_arn = aws_lb_target_group.consul.arn
-  }
-}
+#   default_action {
+#     type             = "forward"
+#     target_group_arn = aws_lb_target_group.consul.arn
+#   }
+# }
 
-resource "aws_route53_record" "record" {
-  zone_id = data.aws_route53_zone.zone.id
-  name    = "${var.name}.${var.domain}"
-  type    = "A"
-
-  alias {
-    name                   = aws_lb.loadbalancer.dns_name
-    zone_id                = aws_lb.loadbalancer.zone_id
-    evaluate_target_health = "false"
-  }
-}
