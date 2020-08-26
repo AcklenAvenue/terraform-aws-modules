@@ -36,18 +36,3 @@ variable "key_name" {
   description = "EC2 SSH pair name."
   type        = string
 }
-
-variable "bastion_min_size" {
-  description = "The maximum size of the bastion auto scale group"
-  type        = string
-}
-
-variable "bastion_max_size" {
-  description = "The maximum size of the bastion auto scale group"
-  type        = string
-}
-
-variable "bastion_desired_capacity" {
-  description = "The desired capacity size of the bastion auto scale group"
-  type        = string
-}
