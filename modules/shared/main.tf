@@ -20,7 +20,7 @@ resource "aws_instance" "bastion" {
   subnet_id                   = module.network.public1_subnet_id
   associate_public_ip_address = true
 
-  security_groups = [
+  vpc_security_group_ids = [
     aws_security_group.ssh.id,
     aws_security_group.consul.id
   ]
