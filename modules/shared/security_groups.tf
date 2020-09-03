@@ -1,4 +1,4 @@
-resource "aws_security_group" "ssh" {
+resource "aws_security_group" "bastion" {
   name        = "${var.name}-launchconfiguration"
   description = "Security rules for review app EC2 instances"
   vpc_id      = module.network.vpc_id
@@ -6,6 +6,13 @@ resource "aws_security_group" "ssh" {
   ingress {
     from_port   = 22
     to_port     = 22
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  ingress {
+    from_port   = 80
+    to_port     = 80
     protocol    = "tcp"
     cidr_blocks = ["0.0.0.0/0"]
   }
@@ -20,7 +27,7 @@ resource "aws_security_group" "ssh" {
   tags = {
     Name    = var.name
     Project = var.name
-    Rule    = "ssh"
+    Rule    = "bastion"
   }
 }
 

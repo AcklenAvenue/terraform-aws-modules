@@ -5,10 +5,10 @@ data "aws_security_group" "consul" {
   }
 }
 
-data "aws_security_group" "ssh" {
+data "aws_security_group" "bastion" {
   tags = {
     Project = var.project,
-    Rule    = "ssh"
+    Rule    = "bastion"
   }
 }
 
