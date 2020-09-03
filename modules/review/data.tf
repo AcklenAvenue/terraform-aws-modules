@@ -5,10 +5,10 @@ data "aws_security_group" "consul" {
   }
 }
 
-data "aws_security_group" "bastion" {
+data "aws_security_group" "ssh" {
   tags = {
     Project = var.project,
-    Rule    = "bastion"
+    Rule    = "ssh"
   }
 }
 
@@ -16,6 +16,13 @@ data "aws_security_group" "backend" {
   tags = {
     Project = var.project,
     Rule    = "backend"
+  }
+}
+
+data "aws_security_group" "nginx" {
+  tags = {
+    Project = var.project,
+    Rule    = "nginx"
   }
 }
 

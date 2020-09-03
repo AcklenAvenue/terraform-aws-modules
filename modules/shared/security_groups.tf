@@ -1,6 +1,6 @@
-resource "aws_security_group" "bastion" {
-  name        = "${var.name}-launchconfiguration"
-  description = "Security rules for review app EC2 instances"
+resource "aws_security_group" "ssh" {
+  name        = "${var.name} ssh rule."
+  description = "Security rules for SSH."
   vpc_id      = module.network.vpc_id
 
   ingress {
@@ -9,6 +9,25 @@ resource "aws_security_group" "bastion" {
     protocol    = "tcp"
     cidr_blocks = ["0.0.0.0/0"]
   }
+
+  egress {
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  tags = {
+    Name    = var.name
+    Project = var.name
+    Rule    = "ssh"
+  }
+}
+
+resource "aws_security_group" "nginx" {
+  name        = "${var.name} Nginx rule."
+  description = "Security rules for Nginx."
+  vpc_id      = module.network.vpc_id
 
   ingress {
     from_port   = 80
@@ -27,13 +46,13 @@ resource "aws_security_group" "bastion" {
   tags = {
     Name    = var.name
     Project = var.name
-    Rule    = "bastion"
+    Rule    = "ssh"
   }
 }
 
 resource "aws_security_group" "consul" {
-  name        = "${var.name}-consul"
-  description = "Security rules for review app EC2 instances"
+  name        = "${var.name} Consul rule."
+  description = "Security rules for Consul."
   vpc_id      = module.network.vpc_id
 
   ingress {
@@ -86,7 +105,7 @@ resource "aws_security_group" "consul" {
 }
 
 resource "aws_security_group" "loadbalancer" {
-  name        = "${var.name}-loadbalancer"
+  name        = "${var.name} loadbalancer rule."
   description = "Security rules for the application loadbalancer"
   vpc_id      = module.network.vpc_id
 
@@ -118,7 +137,7 @@ resource "aws_security_group" "loadbalancer" {
 }
 
 resource "aws_security_group" "backend" {
-  name        = "${var.name}-backend"
+  name        = "${var.name} backend rule."
   description = "Security rules for the backend"
   vpc_id      = module.network.vpc_id
 
