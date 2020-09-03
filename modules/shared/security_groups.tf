@@ -132,5 +132,6 @@ resource "aws_security_group" "backend" {
   tags = {
     Name    = var.name
     Project = var.name
+    Rule    = "backend"
   }
 }
