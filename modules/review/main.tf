@@ -12,7 +12,7 @@ resource "aws_launch_configuration" "review" {
   associate_public_ip_address = false
 
   security_groups = [
-    data.aws_security_group.ssh.id,
+    data.aws_security_group.bastion.id,
     data.aws_security_group.consul.id,
     data.aws_security_group.backend.id
   ]
