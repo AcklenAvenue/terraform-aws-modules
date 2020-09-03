@@ -22,6 +22,7 @@ resource "aws_instance" "bastion" {
 
   vpc_security_group_ids = [
     aws_security_group.ssh.id,
+    aws_security_group.nginx.id,
     aws_security_group.consul.id
   ]
 
