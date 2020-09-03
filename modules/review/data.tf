@@ -12,6 +12,13 @@ data "aws_security_group" "ssh" {
   }
 }
 
+data "aws_security_group" "backend" {
+  tags = {
+    Project = var.project,
+    Rule    = "backend"
+  }
+}
+
 data "aws_subnet" "private1" {
   filter {
     name   = "tag:Name"
