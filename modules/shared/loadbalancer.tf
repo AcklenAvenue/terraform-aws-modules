@@ -6,8 +6,8 @@ resource "aws_lb" "loadbalancer" {
   security_groups            = [aws_security_group.loadbalancer.id]
 
   subnets = [
-    module.network.private1_subnet_id,
-    module.network.private2_subnet_id
+    module.network.public1_subnet_id,
+    module.network.public2_subnet_id
   ]
 
   tags = {
