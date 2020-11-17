@@ -20,6 +20,7 @@ Variable types:
 |:--------------------   |:------------- |:------- |
 | db_instance_type       | "db.t2.micro" | string  |
 | name_prefix*           |               | string  |
+| project_name*          |               | string  |
 | db_username            |               | string  |
 | db_password            |               | string  |
 | db_subnet_group_name   |               | string  |

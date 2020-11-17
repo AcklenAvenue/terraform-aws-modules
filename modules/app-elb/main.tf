@@ -18,6 +18,7 @@ resource "aws_lb" "application-loadbalancer" {
   enable_deletion_protection = var.enable_del_protection
   tags = {
     Name = "${var.name_prefix}-elb"
+		Project = var.project_name
   }
 }
 
@@ -63,6 +64,7 @@ resource "aws_lb_target_group" "app_lb_tgt_atscaling" {
 
   tags = {
     Name = "${var.name_prefix}-app-tgt-gp"
+		Project = var.project_name
   }
 
 }

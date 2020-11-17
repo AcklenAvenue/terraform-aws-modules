@@ -6,7 +6,7 @@ resource "aws_vpc" "vpc" {
 
   tags = {
     Name    = var.name
-    Project = var.name
+    Project = var.project
   }
 }
 
@@ -15,7 +15,7 @@ resource "aws_internet_gateway" "internet_gateway" {
 
   tags = {
     Name    = var.name
-    Project = var.name
+    Project = var.project
   }
 }
 
@@ -25,7 +25,7 @@ resource "aws_eip" "eip" {
 
   tags = {
     Name    = var.name
-    Project = var.name
+    Project = var.project
   }
 }
 
@@ -39,7 +39,7 @@ resource "aws_route_table" "public_rt" {
 
   tags = {
     Name    = "${var.name}-public"
-    Project = var.name
+    Project = var.project
   }
 }
 
@@ -52,7 +52,7 @@ resource "aws_default_route_table" "private_rt" {
 
   tags = {
     Name    = "${var.name}-private"
-    Project = var.name
+    Project = var.project
   }
 }
 
@@ -63,6 +63,6 @@ resource "aws_nat_gateway" "nat" {
 
   tags = {
     Name    = "${var.name}"
-    Project = var.name
+    Project = var.project
   }
 }

@@ -40,6 +40,7 @@ resource "aws_elb" "sprint0_elb" {
 
   tags = {
     Name = "${var.name_prefix}-elb"
+		Project = var.project_name
   }
 }
 

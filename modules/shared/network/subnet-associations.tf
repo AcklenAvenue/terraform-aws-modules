@@ -28,6 +28,6 @@ resource "aws_db_subnet_group" "rds_subnetgroup" {
 
   tags = {
     Name    = "${var.name}-rds"
-    Project = var.name
+    Project = var.project
   }
 }

@@ -18,6 +18,11 @@ variable "name" {
   type        = string
 }
 
+variable "project" {
+  description = "Project name used in the resources"
+  type        = string
+}
+
 variable "domain" {
   description = "Name of the hosted zone in Route53."
   type        = string

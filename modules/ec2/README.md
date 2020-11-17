@@ -16,6 +16,7 @@ Variable types:
 | dev_instance_type | "t2.micro"    | string |
 | dev_ami*          |               | string |
 | name_prefix*      |               | string |
+| project_name*     |               | string |
 | key_name*         |               | string |
 | bastion_sg_id     |               | list   |
 | public1_subnet_id |               | string |
@@ -26,6 +27,7 @@ Variable types:
 | lc_instance_type*   |               | string  |
 | dev_ami*            |               | string  |
 | name_prefix*        |               | string  |
+| project_name*       |               | string  |
 | key_name*           |               | string  |
 | sprint0_private_sg* |               | list    |
 | private1_subnet_id  |               | string  |

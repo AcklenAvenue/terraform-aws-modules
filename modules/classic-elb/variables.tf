@@ -6,6 +6,9 @@ variable "hosted_zone_name" {
 variable "name_prefix" {
   description = "The name of the LB"
 }
+variable "project_name" {
+	description = "Sets the project name for resources"
+}
 variable "public1_subnet_id" {
   description = "subnet ID to attach to the LB"
 }

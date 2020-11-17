@@ -16,6 +16,6 @@ resource "aws_db_instance" "db_uat" {
 
   tags = {
     Name    = "${var.name_prefix}-rds"
-    Project = var.name_prefix
+    Project = var.project_name
   }
 }

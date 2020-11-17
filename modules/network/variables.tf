@@ -13,6 +13,9 @@ variable "enable_dns_support" {
 variable "name_prefix" {
   description = "tag name"
 }
+variable "project_name" {
+	description = "Sets project name for resources"
+}
 #eip.sprint0_eip
 variable "eip_vpc" {
   default = true

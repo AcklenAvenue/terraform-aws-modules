@@ -14,6 +14,9 @@ variable "db_instance_type" {
 variable "name_prefix" {
     description = "The name of the RDS instance, if omitted, Terraform will assign a random, unique identifier"
 }
+variable "project_name" {
+		description = "Sets the project name for resources"
+}
 variable "db_username" {
     description = "Username for the master DB user"
 }

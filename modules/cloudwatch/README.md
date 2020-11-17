@@ -14,6 +14,7 @@ Variable types:
 | variable       | default value | type   |
 |:-------------  |:------------- |:------ |
 | name_prefix*   |               | string |
+| project_name*  |               | string |
 | retention_days | 3             | number |
 
 #### cloudwatch_log_group.logstream

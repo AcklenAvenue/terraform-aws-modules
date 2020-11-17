@@ -138,6 +138,7 @@ resource "aws_cloudfront_distribution" "frontend_s3_distribution" {
 
   tags = {
     Name = "${var.name_prefix}-cloudfront"
+		Project = var.project
   }
 
   viewer_certificate {
