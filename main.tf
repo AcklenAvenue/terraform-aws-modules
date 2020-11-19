@@ -6,9 +6,10 @@ provider "aws" {
 }
 
 module "network-sprint-0" {
-  source      = "./modules/network"
-  vpc_cidr    = "${var.vpc_cidr}"
-  name_prefix = "${var.name_prefix}"
+  source       = "./modules/network"
+  vpc_cidr     = "${var.vpc_cidr}"
+  name_prefix  = "${var.name_prefix}"
+	project_name = "${var.project_name}"
 
   cidrs = {
     public1  = "10.0.1.0/24"
@@ -24,14 +25,16 @@ module "security-group-sprint0" {
   source               = "./modules/security"
   vpc_id               = "${module.network-sprint-0.vpc_id}"
   name_prefix          = "${var.name_prefix}"
+	project_name         = "${var.project_name}"
   allowed_ssh_ip       = ["0.0.0.0/0"]
   private_ingress_cidr = ["${var.vpc_cidr}"]
   db_port              = "${var.db_port}"
 }
 
 module "cloudwatch" {
-  source      = "./modules/cloudwatch"
-  name_prefix = "${var.name_prefix}"
+  source       = "./modules/cloudwatch"
+  name_prefix  = "${var.name_prefix}"
+	project_name = "${var.project_name}"
 }
 
 module "ec2-sprint0" {
@@ -43,6 +46,7 @@ module "ec2-sprint0" {
   public1_subnet_id       = "${module.network-sprint-0.public1_subnet_id}"
   public2_subnet_id       = "${module.network-sprint-0.public2_subnet_id}"
   name_prefix             = "${var.name_prefix}"
+	project_name            = "${var.project_name}"
   sprint0_public_sg       = ["${module.security-group-sprint0.sprint0_public_sg}"]
   elb_healthy_threshold   = "${var.elb_healthy_threshold}"
   elb_unhealthy_threshold = "${var.elb_unhealthy_threshold}"
