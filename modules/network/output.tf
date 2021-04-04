@@ -1,39 +1,39 @@
 output "vpc_id" {
-  description = "The id of the vpc"
-  value       = aws_vpc.sprint0_vpc.id
+  description = "Main vpc id"
+  value       = aws_vpc.main.id
 }
 
-output "public1_subnet_id" {
-  description = "The id of the public1 subnet"
-  value       = aws_subnet.sprint0_public1_subnet.id
+output "public_subnets_ids" {
+  description = "Available public subnet ids"
+  value = {
+    for subnet in aws_subnet.public_subnets : subnet.tags["Name"] => subnet.id
+  }
 }
 
-output "public2_subnet_id" {
-  description = "The id of the public2 subnet"
-  value       = aws_subnet.sprint0_public2_subnet.id
+output "private_subnets_ids" {
+  description = "Available private subnet ids"
+  value = {
+    for subnet in aws_subnet.private_subnets : subnet.tags["Name"] => subnet.id
+  }
 }
 
-output "private1_subnet_id" {
-  description = "The id of the private1 subnet"
-  value       = aws_subnet.sprint0_private1_subnet.id
+output "security_group_ids" {
+  description = "Security groups ids"
+  value = {
+    for security_group in aws_security_group.security_groups : trimprefix(security_group.name, "${local.name_prefix}-") => security_group.id
+  }
 }
 
-output "private2_subnet_id" {
-  description = "The id of the private2 subnet"
-  value       = aws_subnet.sprint0_private2_subnet.id
+output "private_subnets_cidrs" {
+  description = "Available private subnet ids"
+  value = {
+    for subnet in aws_subnet.private_subnets : subnet.tags["Name"] => subnet.cidr_block
+  }
 }
 
-output "rds1_subnet_id" {
-  description = "The id of the rds1 subnet"
-  value       = aws_subnet.sprint0_rds1_subnet.id
-}
-
-output "rds2_subnet_id" {
-  description = "The id of the rds2 subnet"
-  value       = aws_subnet.sprint0_rds2_subnet.id
-}
-
-output "rds_subnet_group_name" {
-  description = "Name of the subnet group"
-  value       = aws_db_subnet_group.sprint0_rds_subnetgroup.id
+output "public_subnets_cidrs" {
+  description = "Available public subnet ids"
+  value = {
+    for subnet in aws_subnet.public_subnets : subnet.tags["Name"] => subnet.cidr_block
+  }
 }

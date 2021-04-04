@@ -1,51 +1,70 @@
-#vpc.sprint0_vpc
-variable "vpc_cidr" {
-  description = "The CIDR block for the VPC"
-}
-variable "enable_dns_host" {
-  default = true
-  description = "A boolean flag to enable/disable DNS hostnames in the VPC"
-}
-variable "enable_dns_support" {
-  default = true
-  description = "A boolean flag to enable/disable DNS support in the VPC"
-}
-variable "name_prefix" {
-  description = "tag name"
-}
-#eip.sprint0_eip
-variable "eip_vpc" {
-  default = true
-  description = "Boolean if the EIP is in a VPC or not"
-}
-#route_table.sprint0_public_rt
-variable "rt_public_cidr" {
-  default = "0.0.0.0/0"
-  description = "The CIDR block of the route"
-}
-#default_route_table.sprint0_private_rt
-variable "rt_private_cidr" {
-  default = "0.0.0.0/0"
-  description = "The CIDR block of the route"
-}
-#subnet.sprint0_public1_subnet
-variable "cidrs" {
-  type = map(string)
-  description = "Map of the CIDR blocks for the subnets"
-}
-variable "public_ip_map" {
-  default = true
-  description = "Specify true to indicate that instances launched into the subnet should be assigned a public IP address"
-}
-#subnet.sprint0_private1_subnet
-variable "private_ip_map" {
-  default = false
-  description = "Specify true to indicate that instances launched into the subnet should be assigned a public IP address"
-}
-#subnet.sprint0_rds1_subnet
-variable "rds_ip_map" {
-  default = false
-  description = "Specify true to indicate that instances launched into the subnet should be assigned a public IP address"
+variable "project" {
+  description = "Name of the project"
+  type        = string
 }
 
-data "aws_availability_zones" "available" {}
+variable "environment" {
+  description = "Name of the environment"
+  type        = string
+}
+
+variable "cidr_block" {
+  description = "Main vpc cidr block"
+  type        = string
+  default     = "10.0.0.0/16"
+}
+
+variable "natgateway_subnet_name" {
+  description = "The Subnet name of the subnet in which the NAT gateway will be placed"
+  type        = string
+}
+
+variable "public_subnets" {
+  description = "Public subnets configuration."
+  type = set(object({
+    name              = string
+    availability_zone = string
+    cidr_block        = string
+  }))
+  default = [{
+    name              = "my-subnet"
+    availability_zone = "eu-central-1a",
+    cidr_block        = "10.0.0.0/24"
+  }]
+}
+
+variable "private_subnets" {
+  description = "Private subnets configuration."
+  type = set(object({
+    name              = string
+    availability_zone = string
+    cidr_block        = string
+  }))
+  default = [{
+    name              = "my-subnet"
+    availability_zone = "eu-central-1a",
+    cidr_block        = "10.0.0.1/24"
+  }]
+}
+
+variable "security_groups" {
+  description = "Security groups configuration that doesn't depend on any other security group"
+  type = set(object({
+    name        = string
+    description = string
+    ingress = set(object({
+      from_port      = number
+      to_port        = number
+      protocol       = string
+      cidr_blocks    = list(string)
+      security_group = string
+    }))
+    egress = set(object({
+      from_port      = number
+      to_port        = number
+      protocol       = string
+      cidr_blocks    = list(string)
+      security_group = string
+    }))
+  }))
+}
