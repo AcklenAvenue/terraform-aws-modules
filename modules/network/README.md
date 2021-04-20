@@ -36,11 +36,12 @@ No modules.
 |------|-------------|------|---------|:--------:|
 | <a name="input_cidr_block"></a> [cidr\_block](#input\_cidr\_block) | Main vpc cidr block | `string` | `"10.0.0.0/16"` | no |
 | <a name="input_environment"></a> [environment](#input\_environment) | Name of the environment | `string` | n/a | yes |
-| <a name="input_natgateway_subnet_name"></a> [natgateway\_subnet\_name](#input\_natgateway\_subnet\_name) | The Subnet name of the subnet in which the NAT gateway will be placed | `string` | n/a | yes |
-| <a name="input_private_subnets"></a> [private\_subnets](#input\_private\_subnets) | Private subnets configuration. | <pre>set(object({<br>    name              = string<br>    availability_zone = string<br>    cidr_block        = string<br>  }))</pre> | <pre>[<br>  {<br>    "availability_zone": "eu-central-1a", <br>    "cidr_block": "10.0.0.1/24", <br>    "name": "my-subnet"<br>  }<br>]</pre> | no |
+| <a name="input_natgateway_mapping"></a> [natgateway\_mapping](#input\_natgateway\_mapping) | The Subnet names in which the NAT gateways will be placed | <pre>set(object({<br>    public_subnet   = string<br>    private_subnets = list(string)<br>  }))</pre> | `[]` | no |
+| <a name="input_private_subnets"></a> [private\_subnets](#input\_private\_subnets) | Private subnets configuration. | <pre>set(object({<br>    name              = string<br>    availability_zone = string<br>    cidr_block        = string<br>  }))</pre> | n/a | yes |
 | <a name="input_project"></a> [project](#input\_project) | Name of the project | `string` | n/a | yes |
-| <a name="input_public_subnets"></a> [public\_subnets](#input\_public\_subnets) | Public subnets configuration. | <pre>set(object({<br>    name              = string<br>    availability_zone = string<br>    cidr_block        = string<br>  }))</pre> | <pre>[<br>  {<br>    "availability_zone": "eu-central-1a", <br>    "cidr_block": "10.0.0.0/24", <br>    "name": "my-subnet"<br>  }<br>]</pre> | no |
+| <a name="input_public_subnets"></a> [public\_subnets](#input\_public\_subnets) | Public subnets configuration | <pre>set(object({<br>    name              = string<br>    availability_zone = string<br>    cidr_block        = string<br>  }))</pre> | n/a | yes |
 | <a name="input_security_groups"></a> [security\_groups](#input\_security\_groups) | Security groups configuration that doesn't depend on any other security group | <pre>set(object({<br>    name        = string<br>    description = string<br>    ingress = set(object({<br>      from_port      = number<br>      to_port        = number<br>      protocol       = string<br>      cidr_blocks    = list(string)<br>      security_group = string<br>    }))<br>    egress = set(object({<br>      from_port      = number<br>      to_port        = number<br>      protocol       = string<br>      cidr_blocks    = list(string)<br>      security_group = string<br>    }))<br>  }))</pre> | n/a | yes |
+| <a name="input_version_string"></a> [version\_string](#input\_version\_string) | Version of the infrastructure | `string` | n/a | yes |
 
 ## Outputs
 

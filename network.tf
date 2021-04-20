@@ -1,21 +1,31 @@
 module "network" {
   source = "./modules/network"
 
-  project                = "acklen"
-  environment            = "prod"
-  cidr_block             = "10.0.0.0/16"
-  natgateway_subnet_name = "public-network-1"
+  project        = "acklen"
+  environment    = "production"
+  version_string = "v0.0.1"
+  cidr_block     = "10.0.0.0/16"
+
+  natgateway_mapping = [
+    {
+      public_subnet = "public-network-1",
+      private_subnets = [
+        "private-network-1",
+        "private-network-2"
+      ]
+    }
+  ]
 
   public_subnets = [
     {
       name              = "public-network-1"
       availability_zone = "us-east-1a",
-      cidr_block        = "10.0.0.0/24",
+      cidr_block        = "10.0.0.0/24"
     },
     {
       name              = "public-network-2"
       availability_zone = "us-east-1b",
-      cidr_block        = "10.0.1.0/24",
+      cidr_block        = "10.0.1.0/24"
     }
   ]
 
@@ -28,24 +38,24 @@ module "network" {
     {
       name              = "private-network-2"
       availability_zone = "us-east-1b",
-      cidr_block        = "10.0.3.0/24",
+      cidr_block        = "10.0.3.0/24"
     },
     {
       name              = "db-network-1"
       availability_zone = "us-east-1a",
-      cidr_block        = "10.0.4.0/24",
+      cidr_block        = "10.0.4.0/24"
     },
     {
       name              = "db-network-2"
       availability_zone = "us-east-1b",
-      cidr_block        = "10.0.5.0/24",
+      cidr_block        = "10.0.5.0/24"
     }
   ]
 
   security_groups = [
     {
-      name        = "bastion"
-      description = "Allow SSH from the open internet"
+      name        = "public"
+      description = "Allow connectivity from internet"
       ingress = [
         {
           from_port      = 22
@@ -55,12 +65,33 @@ module "network" {
           security_group = null
         },
         {
-          from_port      = 3306
-          to_port        = 3306
+          from_port      = 8500
+          to_port        = 8500
           protocol       = "tcp"
           cidr_blocks    = ["0.0.0.0/0"]
           security_group = null
         },
+        {
+          from_port      = 8300
+          to_port        = 8300
+          protocol       = "tcp"
+          cidr_blocks    = []
+          security_group = "loadbalancer"
+        },
+        {
+          from_port      = 8302
+          to_port        = 8302
+          protocol       = "tcp"
+          cidr_blocks    = []
+          security_group = "loadbalancer"
+        },
+        {
+          from_port      = 8302
+          to_port        = 8302
+          protocol       = "udp"
+          cidr_blocks    = []
+          security_group = "loadbalancer"
+        }
       ]
       egress = [
         {
@@ -102,42 +133,6 @@ module "network" {
       ]
     },
     {
-      name        = "database"
-      description = "Allow MYSQL ports to Wordpress private subnets and database network"
-      ingress = [
-        {
-          from_port      = 3306
-          to_port        = 3306
-          protocol       = "tcp"
-          cidr_blocks    = [],
-          security_group = "bastion"
-        },
-        {
-          from_port      = 3306
-          to_port        = 3306
-          protocol       = "tcp"
-          cidr_blocks    = [],
-          security_group = "private"
-        },
-        {
-          from_port      = 11211
-          to_port        = 11211
-          protocol       = "tcp"
-          cidr_blocks    = [],
-          security_group = "memcached"
-        }
-      ]
-      egress = [
-        {
-          from_port      = 0
-          to_port        = 0
-          protocol       = "-1"
-          cidr_blocks    = ["0.0.0.0/0"]
-          security_group = null
-        }
-      ]
-    },
-    {
       name        = "private"
       description = "Allow SSH from bastion and load balancer communication"
       ingress = [
@@ -146,11 +141,11 @@ module "network" {
           to_port        = 22
           protocol       = "tcp"
           cidr_blocks    = []
-          security_group = "bastion"
+          security_group = "public"
         },
         {
-          from_port      = 80
-          to_port        = 80
+          from_port      = 8500
+          to_port        = 8500
           protocol       = "tcp"
           cidr_blocks    = []
           security_group = "loadbalancer"
@@ -166,5 +161,34 @@ module "network" {
         }
       ]
     },
+    {
+      name        = "consul"
+      description = "Allow SSH from bastion and load balancer communication"
+      ingress = [
+        {
+          from_port      = 8300
+          to_port        = 8301
+          protocol       = "tcp"
+          cidr_blocks    = []
+          security_group = "consul"
+        },
+        {
+          from_port      = 8301
+          to_port        = 8301
+          protocol       = "udp"
+          cidr_blocks    = []
+          security_group = "consul"
+        },
+      ]
+      egress = [
+        {
+          from_port      = 0
+          to_port        = 0
+          protocol       = "-1"
+          cidr_blocks    = ["0.0.0.0/0"]
+          security_group = null
+        }
+      ]
+    }
   ]
 }

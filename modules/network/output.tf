@@ -6,14 +6,14 @@ output "vpc_id" {
 output "public_subnets_ids" {
   description = "Available public subnet ids"
   value = {
-    for subnet in aws_subnet.public_subnets : subnet.tags["Name"] => subnet.id
+    for subnet in aws_subnet.public_subnets : trimprefix(subnet.tags["Name"], "${local.name_prefix}-") => subnet.id
   }
 }
 
 output "private_subnets_ids" {
   description = "Available private subnet ids"
   value = {
-    for subnet in aws_subnet.private_subnets : subnet.tags["Name"] => subnet.id
+    for subnet in aws_subnet.private_subnets : trimprefix(subnet.tags["Name"], "${local.name_prefix}-") => subnet.id
   }
 }
 
@@ -27,13 +27,13 @@ output "security_group_ids" {
 output "private_subnets_cidrs" {
   description = "Available private subnet ids"
   value = {
-    for subnet in aws_subnet.private_subnets : subnet.tags["Name"] => subnet.cidr_block
+    for subnet in aws_subnet.private_subnets : trimprefix(subnet.tags["Name"], "${local.name_prefix}-") => subnet.cidr_block
   }
 }
 
 output "public_subnets_cidrs" {
   description = "Available public subnet ids"
   value = {
-    for subnet in aws_subnet.public_subnets : subnet.tags["Name"] => subnet.cidr_block
+    for subnet in aws_subnet.public_subnets : trimprefix(subnet.tags["Name"], "${local.name_prefix}-") => subnet.cidr_block
   }
 }

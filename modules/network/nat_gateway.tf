@@ -1,20 +1,20 @@
 resource "aws_eip" "elastic_ip" {
-  vpc = true
-
-  tags = {
-    Name        = local.name_prefix
-    Project     = var.project
-    Environment = var.environment
-  }
+  for_each = { for natgateway_config in var.natgateway_mapping : natgateway_config.public_subnet => natgateway_config }
+  vpc      = true
+  tags = merge(local.tags, {
+    Name = "${local.name_prefix}-${each.value.public_subnet}"
+  })
 }
 
 resource "aws_nat_gateway" "nat_gateway" {
-  allocation_id = aws_eip.elastic_ip.id
-  subnet_id     = aws_subnet.public_subnets[var.natgateway_subnet_name].id
+  for_each = { for natgateway_config in var.natgateway_mapping : natgateway_config.public_subnet => natgateway_config }
 
-  tags = {
-    Name        = local.name_prefix
-    Project     = var.project
-    Environment = var.environment
-  }
+  allocation_id = aws_eip.elastic_ip[each.value.public_subnet].id
+  subnet_id     = aws_subnet.public_subnets[each.value.public_subnet].id
+
+  tags = merge(local.tags, {
+    Name = "${local.name_prefix}-${each.value.public_subnet}"
+  })
+
+  depends_on = [aws_internet_gateway.main]
 }

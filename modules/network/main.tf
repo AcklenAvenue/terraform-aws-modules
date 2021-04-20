@@ -2,21 +2,13 @@ resource "aws_vpc" "main" {
   cidr_block           = var.cidr_block
   enable_dns_hostnames = true
 
-  tags = {
-    Name        = local.name_prefix
-    Project     = var.project
-    Environment = var.environment
-  }
+  tags = merge(local.tags, { Name = local.name_prefix })
 }
 
 resource "aws_internet_gateway" "main" {
   vpc_id = aws_vpc.main.id
 
-  tags = {
-    Name        = local.name_prefix
-    Project     = var.project
-    Environment = var.environment
-  }
+  tags = merge(local.tags, { Name = local.name_prefix })
 }
 
 resource "aws_subnet" "public_subnets" {
@@ -27,11 +19,7 @@ resource "aws_subnet" "public_subnets" {
   cidr_block              = each.value.cidr_block
   map_public_ip_on_launch = true
 
-  tags = {
-    Name        = each.value.name
-    Project     = var.project
-    Environment = var.environment
-  }
+  tags = merge(local.tags, { Name = "${local.name_prefix}-${each.key}" })
 }
 
 resource "aws_subnet" "private_subnets" {
@@ -42,9 +30,5 @@ resource "aws_subnet" "private_subnets" {
   cidr_block              = each.value.cidr_block
   map_public_ip_on_launch = false
 
-  tags = {
-    Name        = each.value.name
-    Project     = var.project
-    Environment = var.environment
-  }
+  tags = merge(local.tags, { Name = "${local.name_prefix}-${each.key}" })
 }
