@@ -33,6 +33,11 @@ variable "subnet_ids" {
   type        = list(string)
 }
 
+variable "target_group_arns" {
+  description = "List of the Target group ARNS to register the autoscaling group"
+  type        = list(string)
+}
+
 variable "security_group_ids" {
   description = "A list of security group IDs to associate"
   type        = list(string)

@@ -4,6 +4,7 @@ resource "aws_launch_template" "launch_configuration" {
   image_id                = data.aws_ami.consul.id
   instance_type           = var.instance_type
   key_name                = var.key_name
+  target_group_arns       = var.target_group_arns
   update_default_version  = true
   disable_api_termination = false
 

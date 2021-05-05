@@ -39,6 +39,7 @@ No modules.
 | <a name="input_project"></a> [project](#input\_project) | Name of the project | `string` | n/a | yes |
 | <a name="input_security_group_ids"></a> [security\_group\_ids](#input\_security\_group\_ids) | A list of security group IDs to associate | `list(string)` | n/a | yes |
 | <a name="input_subnet_ids"></a> [subnet\_ids](#input\_subnet\_ids) | A list of subnet IDs to launch resources in | `list(string)` | n/a | yes |
+| <a name="input_target_group_arns"></a> [target\_group\_arns](#input\_target\_group\_arns) | List of the Target group ARNS to register the autoscaling group | `list(string)` | n/a | yes |
 | <a name="input_version_string"></a> [version\_string](#input\_version\_string) | Version of the infrastructure | `string` | n/a | yes |
 
 ## Outputs
