@@ -4,7 +4,6 @@ resource "aws_launch_template" "launch_configuration" {
   image_id                = data.aws_ami.consul.id
   instance_type           = var.instance_type
   key_name                = var.key_name
-  target_group_arns       = var.target_group_arns
   update_default_version  = true
   disable_api_termination = false
 
@@ -49,6 +48,7 @@ resource "aws_autoscaling_group" "autoscaling_group" {
   vpc_zone_identifier   = var.subnet_ids
   default_cooldown      = 40
   protect_from_scale_in = false
+  target_group_arns     = var.target_group_arns
 
   termination_policies = [
     "OldestInstance",
