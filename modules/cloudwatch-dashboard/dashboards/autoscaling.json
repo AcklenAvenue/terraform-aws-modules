@@ -1,0 +1,63 @@
+{
+    "widgets": [
+        {
+            "height": 3,
+            "width": 12,
+            "y": 0,
+            "x": 0,
+            "type": "metric",
+            "properties": {
+                "metrics": [
+                    [ "AWS/AutoScaling", "GroupTotalCapacity", "AutoScalingGroupName", "${autoscaling_name}", { "yAxis": "left" } ],
+                    [ ".", "GroupInServiceInstances", ".", ".", { "yAxis": "left" } ],
+                    [ ".", "GroupPendingCapacity", ".", "." ]
+                ],
+                "view": "singleValue",
+                "stacked": true,
+                "region": "${aws_region}",
+                "stat": "Minimum",
+                "period": 300,
+                "singleValueFullPrecision": false,
+                "liveData": true,
+                "setPeriodToTimeRange": false,
+                "title": "${name_prefix} Autoscaling Instances Status"
+            }
+        },
+        {
+            "height": 3,
+            "width": 12,
+            "y": 3,
+            "x": 0,
+            "type": "metric",
+            "properties": {
+                "view": "singleValue",
+                "metrics": [
+                    [ "AWS/AutoScaling", "GroupStandbyCapacity", "AutoScalingGroupName", "${autoscaling_name}" ],
+                    [ ".", "GroupTerminatingInstances", ".", "." ],
+                    [ ".", "WarmPoolTotalCapacity", ".", "." ]
+                ],
+                "region": "${aws_region}",
+                "title": "${name_prefix} Autoscaling Pending/Terminating EC2 instances",
+                "period": 300
+            }
+        },
+        {
+            "type": "metric",
+            "x": 12,
+            "y": 0,
+            "width": 12,
+            "height": 6,
+            "properties": {
+                "metrics": [
+                    [ "AWS/AutoScaling", "GroupInServiceInstances", "AutoScalingGroupName", "${autoscaling_name}", { "color": "#2ca02c" } ]
+                ],
+                "view": "timeSeries",
+                "stacked": true,
+                "region": "${aws_region}",
+                "stat": "Average",
+                "period": 300,
+                "title": "${name_prefix} Autoscaling GroupInServiceInstances"
+            }
+        }
+    ]
+}
