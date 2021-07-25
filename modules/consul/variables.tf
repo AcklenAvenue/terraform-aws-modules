@@ -59,7 +59,7 @@ variable "max_size" {
 }
 
 variable "encryption_key" {
-  description = ""
+  description = "Encryption key used in the  gossip encryption when starting a Consul agent"
   type        = string
   sensitive   = true
 }
