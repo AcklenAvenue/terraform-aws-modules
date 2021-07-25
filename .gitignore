@@ -1,5 +1,4 @@
-# Terraform
-.terraform*
+.idea
+.terraform
 *.tfstate
 *.tfstate.backup
-notes.txt
