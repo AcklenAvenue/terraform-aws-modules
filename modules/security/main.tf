@@ -23,6 +23,7 @@ resource "aws_security_group" "sprint0_bastion_sg" {
 
   tags = {
     Name = "${var.name_prefix}-SG"
+		Project = var.project_name
   }
 }
 
@@ -53,6 +54,7 @@ resource "aws_security_group" "sprint0_public_sg" {
 
   tags = {
     Name = "${var.name_prefix}-SG"
+		Project = var.project_name
   }
 }
 
@@ -80,6 +82,7 @@ resource "aws_security_group" "sprint0_private_sg" {
 
   tags = {
     Name = "${var.name_prefix}-SG"
+		Project = var.project_name
   }
 }
 
@@ -104,5 +107,6 @@ resource "aws_security_group" "sprint0_rds_sg" {
 
   tags = {
     Name = "${var.name_prefix}-SG"
+		Project = var.project_name
   }
 }

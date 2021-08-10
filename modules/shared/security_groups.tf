@@ -19,7 +19,7 @@ resource "aws_security_group" "ssh" {
 
   tags = {
     Name    = "${var.name}-ssh"
-    Project = var.name
+    Project = var.project
     Rule    = "ssh"
   }
 }
@@ -44,7 +44,7 @@ resource "aws_security_group" "nginx" {
   }
   tags = {
     Name    = "${var.name}-nginx"
-    Project = var.name
+    Project = var.project
     Rule    = "nginx"
   }
 }
@@ -98,7 +98,7 @@ resource "aws_security_group" "consul" {
 
   tags = {
     Name    = "${var.name}-consul"
-    Project = var.name
+    Project = var.project
     Rule    = "consul"
   }
 }
@@ -131,7 +131,7 @@ resource "aws_security_group" "loadbalancer" {
 
   tags = {
     Name    = "${var.name}-loadbalancer"
-    Project = var.name
+    Project = var.project
   }
 }
 
@@ -156,7 +156,7 @@ resource "aws_security_group" "backend" {
 
   tags = {
     Name    = "${var.name}-backend"
-    Project = var.name
+    Project = var.project
     Rule    = "backend"
   }
 }

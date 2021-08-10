@@ -12,7 +12,7 @@ resource "aws_lb" "loadbalancer" {
 
   tags = {
     Name    = var.name
-    Project = var.name
+    Project = var.project
   }
 }
 
@@ -33,7 +33,7 @@ resource "aws_lb_target_group" "nginx" {
 
   tags = {
     Name    = "${var.name}-nginx"
-    Project = var.name
+    Project = var.project
   }
 
   depends_on = [aws_lb.loadbalancer]

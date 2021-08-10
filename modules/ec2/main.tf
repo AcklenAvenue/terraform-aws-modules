@@ -6,6 +6,7 @@ resource "aws_instance" "sprint0_bastion" {
 
   tags = {
     Name = "${var.name_prefix}-bastion"
+		Project = var.project_name
   }
 
   key_name               = var.key_name
@@ -19,6 +20,7 @@ resource "aws_instance" "ec2-first" {
 
   tags = {
     Name = "${var.name_prefix}-ec2"
+		Project = var.project_name
   }
 
   key_name               = var.key_name

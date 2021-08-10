@@ -2,6 +2,10 @@ variable "name" {
   description = "tag name"
 }
 
+variable "project" {
+	description = "Project name for resources"
+}
+
 variable "vpc_cidr" {
   description = "The CIDR block for the VPC"
 }

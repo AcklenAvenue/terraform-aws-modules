@@ -2,6 +2,9 @@
 variable "name_prefix" {
     description = "Creates a unique name beginning with the specified prefix"
 }
+variable "project_name" {
+		description = "Sets de project name for resources"
+}
 variable "image_id" {
     description = "The EC2 image ID to launch"
 }

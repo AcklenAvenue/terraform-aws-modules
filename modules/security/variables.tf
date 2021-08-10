@@ -2,6 +2,9 @@
 variable "name_prefix" {
   description = "The name of the security group"
 }
+variable "project_name" {
+	description = "Sets the project name for resources"
+}
 variable "vpc_id" {
   description = "The VPC ID"
 }

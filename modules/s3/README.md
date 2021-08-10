@@ -36,6 +36,7 @@ Variable types:
 | variable            | default value | type    |
 |:-----------------   |:------------- |:------- |
 | name_prefix*        |               | string  |
+| project*            |               | string  |
 | hosted_zone_name*   |               | string  |
 | cf_distrib_enabled  | `true`        | boolean |
 | cf_distrib_ipv6     | `true`        | boolean |

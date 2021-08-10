@@ -19,6 +19,7 @@ Variable types:
 | variable                  | default value | type     |
 |:---------------------     |:------------- |:-------- |
 | name_prefix*              |               | string   |
+| project_name*             |               | string   |
 | lb_internal               | `false`       | boolean  |
 | lb_type                   | "application" | string   |
 | public1_subnet_id         |               | string   |
@@ -30,6 +31,7 @@ Variable types:
 | variable              | default value | type    |
 |:------------------    |:------------  |:------- |
 | name_prefix*          |               | string  |
+| project_name*         |               | string  |
 | target_group_port     | 5000          | number  |
 | target_group_protocol | "HTTP"        | string  |
 | vpc_id                |               | string  |

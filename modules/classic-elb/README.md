@@ -19,6 +19,7 @@ Variable types:
 | variable                | default value | type    |
 |:-----------------       |:------------- |:------- |
 | name_prefix*            |               | string  |
+| project_name*           |               | string  |
 | public1_subnet_id*      |               | string  |
 | public2_subnet_id       |               | string  |
 | security_groups         |               | list    |

@@ -5,6 +5,7 @@ resource "aws_vpc" "sprint0_vpc" {
 
   tags = {
     Name = "${var.name_prefix}-vpc"
+		Project = var.project_name
   }
 }
 
@@ -14,6 +15,7 @@ resource "aws_internet_gateway" "sprint0_internet_gateway" {
 
   tags = {
     Name = "${var.name_prefix}-internet_gateway"
+		Project = var.project_name
   }
 }
 
@@ -24,6 +26,7 @@ resource "aws_eip" "sprint0_eip" {
 
   tags = {
     Name = "${var.name_prefix}-eip"
+		Project = var.project_name
   }
 }
 
@@ -40,6 +43,7 @@ resource "aws_route_table" "sprint0_public_rt" {
 
   tags = {
     Name = "${var.name_prefix}-public-rTable"
+		Project = var.project_name
   }
 }
 
@@ -52,6 +56,7 @@ resource "aws_default_route_table" "sprint0_private_rt" {
 
   tags = {
     Name = "${var.name_prefix}-private-rTable"
+		Project = var.project_name
   }
 }
 
@@ -65,6 +70,7 @@ resource "aws_subnet" "sprint0_public1_subnet" {
 
   tags = {
     Name = "${var.name_prefix}-_public1"
+		Project = var.project_name
   }
 }
 
@@ -76,6 +82,7 @@ resource "aws_subnet" "sprint0_public2_subnet" {
 
   tags = {
     Name = "${var.name_prefix}-_public2"
+		Project = var.project_name
   }
 }
 
@@ -87,6 +94,7 @@ resource "aws_subnet" "sprint0_private1_subnet" {
 
   tags = {
     Name = "${var.name_prefix}-_private1"
+		Project = var.project_name
   }
 }
 
@@ -98,6 +106,7 @@ resource "aws_subnet" "sprint0_private2_subnet" {
 
   tags = {
     Name = "${var.name_prefix}-_private2"
+		Project = var.project_name
   }
 }
 
@@ -109,6 +118,7 @@ resource "aws_subnet" "sprint0_rds1_subnet" {
 
   tags = {
     Name = "${var.name_prefix}-_rds1"
+		Project = var.project_name
   }
 }
 
@@ -120,6 +130,7 @@ resource "aws_subnet" "sprint0_rds2_subnet" {
 
   tags = {
     Name = "${var.name_prefix}-_rds2"
+		Project = var.project_name
   }
 }
 
@@ -132,6 +143,7 @@ resource "aws_nat_gateway" "sprint0-nat" {
 
   tags = {
     Name = "${var.name_prefix}-nat"
+		Project = var.project_name
   }
 }
 
@@ -168,5 +180,6 @@ resource "aws_db_subnet_group" "sprint0_rds_subnetgroup" {
 
   tags = {
     Name = "${var.name_prefix}-rds_subnetgroup"
+		Project = var.project_name
   }
 }

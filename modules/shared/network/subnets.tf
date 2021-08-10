@@ -6,7 +6,7 @@ resource "aws_subnet" "public1_subnet" {
 
   tags = {
     Name    = "${var.name}-public1"
-    Project = var.name
+    Project = var.project
   }
 }
 
@@ -18,7 +18,7 @@ resource "aws_subnet" "public2_subnet" {
 
   tags = {
     Name    = "${var.name}-public2"
-    Project = var.name
+    Project = var.project
   }
 }
 
@@ -30,7 +30,7 @@ resource "aws_subnet" "private1_subnet" {
 
   tags = {
     Name    = "${var.name}-private1"
-    Project = var.name
+    Project = var.project
   }
 }
 
@@ -42,7 +42,7 @@ resource "aws_subnet" "private2_subnet" {
 
   tags = {
     Name    = "${var.name}-private2"
-    Project = var.name
+    Project = var.project
   }
 }
 
@@ -54,7 +54,7 @@ resource "aws_subnet" "rds1_subnet" {
 
   tags = {
     Name    = "${var.name}-rds1"
-    Project = var.name
+    Project = var.project
   }
 }
 
@@ -66,6 +66,6 @@ resource "aws_subnet" "rds2_subnet" {
 
   tags = {
     Name    = "${var.name}-rds2"
-    Project = var.name
+    Project = var.project
   }
 }

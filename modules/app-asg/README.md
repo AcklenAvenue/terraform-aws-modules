@@ -23,6 +23,7 @@ Variable types:
 | variable                  | default value | type    |
 |:---------------------     |:------------- |:------- |
 | name_prefix*              |               | string  |
+| project_name*             |               | string  |
 | min_size_asg              |               | number  |
 | max_size_asg              |               | number  |
 | health_check_grace_period | 300           | number  |

@@ -9,6 +9,9 @@ variable "dev_ami" {
 variable "name_prefix" {
     description = "tag name"
 }
+variable "project_name" {
+		description = "Sets the project name for resources"
+}
 variable "key_name" {
     description = "The key name of the instance"
 }

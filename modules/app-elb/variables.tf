@@ -6,6 +6,9 @@ variable "hosted_zone_name" {
 variable "name_prefix" {
     description = "The name of the LB"
 }
+variable "project_name" {
+		description = "The project the resources are for"
+}
 variable "lb_internal" {
     default = false
     description = "If true, the LB will be internal"
