@@ -1,7 +1,7 @@
 locals {
   master_object = {
     "rds"         = var.rds_id
-    "rds_cluster" = var.rds_cluster_id
+    "rds_cluster" = var.aurora_rds_cluster_id
     "ecs"         = var.ecs_name
     "cloudfront"  = var.cloudfront_id
     "autoscaling" = var.autoscaling_name

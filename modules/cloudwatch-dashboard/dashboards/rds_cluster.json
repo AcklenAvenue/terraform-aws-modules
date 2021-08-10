@@ -12,7 +12,7 @@
             "AWS/RDS",
             "CPUUtilization",
             "DBClusterIdentifier",
-            "${rds_cluster_id}"
+            "${aurora_rds_cluster_id}"
           ]
         ],
         "view": "timeSeries",
@@ -35,7 +35,7 @@
             "AWS/RDS",
             "DatabaseConnections",
             "DBClusterIdentifier",
-            "${rds_cluster_id}"
+            "${aurora_rds_cluster_id}"
           ]
         ],
         "view": "timeSeries",
@@ -54,7 +54,7 @@
       "type": "metric",
       "properties": {
         "metrics": [
-          ["AWS/RDS", "ReadIOPS", "DBClusterIdentifier", "${rds_cluster_id}"],
+          ["AWS/RDS", "ReadIOPS", "DBClusterIdentifier", "${aurora_rds_cluster_id}"],
           [".", "WriteIOPS", ".", "."]
         ],
         "view": "timeSeries",
@@ -78,7 +78,7 @@
             "AWS/RDS",
             "FreeLocalStorage",
             "DBClusterIdentifier",
-            "${rds_cluster_id}"
+            "${aurora_rds_cluster_id}"
           ]
         ],
         "region": "${aws_region}",

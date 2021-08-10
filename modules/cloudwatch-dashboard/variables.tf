@@ -36,7 +36,7 @@ variable "rds_id" {
   default     = ""
 }
 
-variable "rds_cluster_id" {
+variable "aurora_rds_cluster_id" {
   type        = string
   description = "Adds metrics of Relational Database Cluster to dashboard by using Relational Database Cluster Identifier"
   default     = ""

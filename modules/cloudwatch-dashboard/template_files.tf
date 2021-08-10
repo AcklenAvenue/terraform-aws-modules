@@ -44,9 +44,9 @@ data "template_file" "rds_cluster" {
   template = file("${path.module}/dashboards/rds_cluster.json")
 
   vars = {
-    aws_region     = var.aws_region
-    rds_cluster_id = var.rds_cluster_id
-    name_prefix    = local.name_prefix
+    aws_region            = var.aws_region
+    aurora_rds_cluster_id = var.aurora_rds_cluster_id
+    name_prefix           = local.name_prefix
   }
 
 }
