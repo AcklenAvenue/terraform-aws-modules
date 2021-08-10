@@ -23,7 +23,7 @@ No modules.
 | [template_file.cloudwatchDashboard](https://registry.terraform.io/providers/hashicorp/template/latest/docs/data-sources/file)                  | data source |
 | [template_file.ecs](https://registry.terraform.io/providers/hashicorp/template/latest/docs/data-sources/file)                                  | data source |
 | [template_file.rds](https://registry.terraform.io/providers/hashicorp/template/latest/docs/data-sources/file)                                  | data source |
-| [template_file.rdsCluster](https://registry.terraform.io/providers/hashicorp/template/latest/docs/data-sources/file)                           | data source |
+| [template_file.rds_cluster](https://registry.terraform.io/providers/hashicorp/template/latest/docs/data-sources/file)                          | data source |
 
 ## Inputs
 
@@ -35,7 +35,7 @@ No modules.
 | <a name="input_ecs_name"></a> [ecs_name](#input_ecs_name)                         | Adds metrics of Elastic Container Service to dashboard by using Elastic Container Service Name           | `string` | `""`          |    no    |
 | <a name="input_environment"></a> [environment](#input_environment)                | Name of the environment                                                                                  | `string` | n/a           |   yes    |
 | <a name="input_project"></a> [project](#input_project)                            | Name of the project                                                                                      | `string` | n/a           |   yes    |
-| <a name="input_rdsCluster_id"></a> [rdsCluster_id](#input_rdsCluster_id)          | Adds metrics of Relational Database Cluster to dashboard by using Relational Database Cluster Identifier | `string` | `""`          |    no    |
+| <a name="input_rds_cluster_id"></a> [rds_cluster_id](#input_rds_cluster_id)       | Adds metrics of Relational Database Cluster to dashboard by using Relational Database Cluster Identifier | `string` | `""`          |    no    |
 | <a name="input_rds_id"></a> [rds_id](#input_rds_id)                               | Adds metrics of Relational Database Service to dashboard by using Relational Database Service Identifier | `string` | `""`          |    no    |
 
 ## Outputs

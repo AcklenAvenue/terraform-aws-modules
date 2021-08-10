@@ -1,0 +1,89 @@
+{
+  "widgets": [
+    {
+      "height": 6,
+      "width": 6,
+      "y": 0,
+      "x": 0,
+      "type": "metric",
+      "properties": {
+        "metrics": [
+          [
+            "AWS/RDS",
+            "CPUUtilization",
+            "DBClusterIdentifier",
+            "${rds_cluster_id}"
+          ]
+        ],
+        "view": "timeSeries",
+        "stacked": true,
+        "region": "${aws_region}",
+        "stat": "Average",
+        "period": 300,
+        "title": "${name_prefix} RDS Cluster CPUUtilization"
+      }
+    },
+    {
+      "height": 6,
+      "width": 6,
+      "y": 0,
+      "x": 6,
+      "type": "metric",
+      "properties": {
+        "metrics": [
+          [
+            "AWS/RDS",
+            "DatabaseConnections",
+            "DBClusterIdentifier",
+            "${rds_cluster_id}"
+          ]
+        ],
+        "view": "timeSeries",
+        "stacked": true,
+        "region": "${aws_region}",
+        "stat": "Sum",
+        "period": 300,
+        "title": "${name_prefix} RDS Cluster DatabaseConnections"
+      }
+    },
+    {
+      "height": 6,
+      "width": 6,
+      "y": 0,
+      "x": 12,
+      "type": "metric",
+      "properties": {
+        "metrics": [
+          ["AWS/RDS", "ReadIOPS", "DBClusterIdentifier", "${rds_cluster_id}"],
+          [".", "WriteIOPS", ".", "."]
+        ],
+        "view": "timeSeries",
+        "stacked": true,
+        "region": "${aws_region}",
+        "stat": "Sum",
+        "period": 300,
+        "title": "${name_prefix} RDS Cluster ReadIOPS, WriteIOPS"
+      }
+    },
+    {
+      "height": 6,
+      "width": 6,
+      "y": 0,
+      "x": 18,
+      "type": "metric",
+      "properties": {
+        "view": "singleValue",
+        "metrics": [
+          [
+            "AWS/RDS",
+            "FreeLocalStorage",
+            "DBClusterIdentifier",
+            "${rds_cluster_id}"
+          ]
+        ],
+        "region": "${aws_region}",
+        "title": "${name_prefix} RDS Cluster FreeLocalStorage"
+      }
+    }
+  ]
+}
