@@ -6,7 +6,7 @@ module "ecs" {
   environment      = var.environment
   version_string   = var.version_string
   instance_type    = "t3.micro"
-  key_name         = "AA-DevOps"
+  key_name         = var.ecs["key_name"]
   min_size         = 1
   desired_capacity = 1
   max_size         = 1
