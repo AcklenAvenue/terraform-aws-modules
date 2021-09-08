@@ -24,8 +24,8 @@ POLICY
   }
 
   tags = {
-    Name        = var.name_prefix
-    Project     = var.project
+    Name    = var.name_prefix
+    Project = var.project
   }
 }
 
@@ -38,8 +38,8 @@ resource "aws_route53_record" "frontend-alias-dns-record" {
   name    = "${var.name_prefix}-frontend.${var.hosted_zone_name}"
   type    = var.record_type
   alias {
-    name                   = "${aws_cloudfront_distribution.frontend_s3_distribution.domain_name}"
-    zone_id                = "${aws_cloudfront_distribution.frontend_s3_distribution.hosted_zone_id}"
+    name                   = aws_cloudfront_distribution.frontend_s3_distribution.domain_name
+    zone_id                = aws_cloudfront_distribution.frontend_s3_distribution.hosted_zone_id
     evaluate_target_health = var.eval_target_health
   }
 
@@ -48,8 +48,8 @@ resource "aws_route53_record" "frontend-alias-dns-record" {
 
 resource "aws_cloudfront_distribution" "frontend_s3_distribution" {
   origin {
-    domain_name = "${aws_s3_bucket.web_bucket.website_endpoint}"
-    origin_id   = "${local.s3_origin_id}"
+    domain_name = aws_s3_bucket.web_bucket.website_endpoint
+    origin_id   = local.s3_origin_id
 
     custom_origin_config {
       http_port              = "80"
@@ -61,15 +61,15 @@ resource "aws_cloudfront_distribution" "frontend_s3_distribution" {
 
   aliases = ["${var.name_prefix}-frontend.${var.hosted_zone_name}"]
 
-  enabled             = "${var.cf_distrib_enabled}"
-  is_ipv6_enabled     = "${var.cf_distrib_ipv6}"
+  enabled             = var.cf_distrib_enabled
+  is_ipv6_enabled     = var.cf_distrib_ipv6
   comment             = "${var.name_prefix} cloudfront distro"
-  default_root_object = "${var.index_doc}"
+  default_root_object = var.index_doc
 
   default_cache_behavior {
     allowed_methods  = ["GET", "HEAD"]
     cached_methods   = ["GET", "HEAD"]
-    target_origin_id = "${local.s3_origin_id}"
+    target_origin_id = local.s3_origin_id
 
     forwarded_values {
       query_string = false
@@ -89,7 +89,7 @@ resource "aws_cloudfront_distribution" "frontend_s3_distribution" {
     path_pattern     = "/content/immutable/*"
     allowed_methods  = ["GET", "HEAD", "OPTIONS"]
     cached_methods   = ["GET", "HEAD", "OPTIONS"]
-    target_origin_id = "${local.s3_origin_id}"
+    target_origin_id = local.s3_origin_id
 
     forwarded_values {
       query_string = false
@@ -111,7 +111,7 @@ resource "aws_cloudfront_distribution" "frontend_s3_distribution" {
     path_pattern     = "/content/*"
     allowed_methods  = ["GET", "HEAD"]
     cached_methods   = ["GET", "HEAD"]
-    target_origin_id = "${local.s3_origin_id}"
+    target_origin_id = local.s3_origin_id
 
     forwarded_values {
       query_string = false
@@ -142,7 +142,15 @@ resource "aws_cloudfront_distribution" "frontend_s3_distribution" {
 
   viewer_certificate {
     cloudfront_default_certificate = false
-    acm_certificate_arn            = "${var.aws_certificate_arn}"
+    acm_certificate_arn            = var.aws_certificate_arn
     ssl_support_method             = "sni-only"
   }
+}
+
+resource "aws_s3_bucket_object" "object1" {
+  for_each = fileset("build/", "*")
+  bucket   = aws_s3_bucket.web_bucket.id
+  key      = each.value
+  source   = "../../../build/${each.value}"
+  etag     = filemd5("../../../build/${each.value}")
 }

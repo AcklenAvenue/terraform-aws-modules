@@ -50,37 +50,37 @@ variable "elb_timeout" {
   description = "The length of time before the check times out"
 }
 variable "elb_target" {
-  default = "TCP:5000"
+  default     = "TCP:5000"
   description = "The target of the check"
 }
 variable "elb_interval" {
   description = "The interval between checks"
 }
 variable "cross_zone_lb" {
-  default = true
-  description = "Enable cross-zone load balancing"  
+  default     = true
+  description = "Enable cross-zone load balancing"
 }
 variable "idle_timeout" {
-  default = 400
+  default     = 400
   description = "The time in seconds that the connection is allowed to be idle"
 }
 variable "con_draining" {
-  default = true
+  default     = true
   description = "Boolean to enable connection draining"
 }
 variable "con_draining_timeout" {
-  default = 400
+  default     = 400
   description = "The time in seconds to allow for connections to drain"
 }
 #route53_record.backend-dns-record
 variable "zone_id" {
-    description = "The ID of the hosted zone to contain this record"
+  description = "The ID of the hosted zone to contain this record"
 }
 variable "record_type" {
-    default = "A"
-    description = "The record type"
+  default     = "A"
+  description = "The record type"
 }
 variable "eval_target_health" {
-    default = false
-    description = "Set to true if you want Route53 to determine whether to respond to DNS queries using this resource record set by checking the health"
+  default     = false
+  description = "Set to true if you want Route53 to determine whether to respond to DNS queries using this resource record set by checking the health"
 }

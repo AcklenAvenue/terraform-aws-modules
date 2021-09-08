@@ -1,14 +1,14 @@
 provider "aws" {
-  region     = "${var.aws_region}"
-  access_key = "${var.access_key}"
-  secret_key = "${var.secret_key}"
+  region     = var.aws_region
+  access_key = var.access_key
+  secret_key = var.secret_key
 
 }
 
 module "network-sprint-0" {
   source      = "./modules/network"
-  vpc_cidr    = "${var.vpc_cidr}"
-  name_prefix = "${var.name_prefix}"
+  vpc_cidr    = var.vpc_cidr
+  name_prefix = var.name_prefix
 
   cidrs = {
     public1  = "10.0.1.0/24"
@@ -22,41 +22,41 @@ module "network-sprint-0" {
 
 module "security-group-sprint0" {
   source               = "./modules/security"
-  vpc_id               = "${module.network-sprint-0.vpc_id}"
-  name_prefix          = "${var.name_prefix}"
+  vpc_id               = module.network-sprint-0.vpc_id
+  name_prefix          = var.name_prefix
   allowed_ssh_ip       = ["0.0.0.0/0"]
   private_ingress_cidr = ["${var.vpc_cidr}"]
-  db_port              = "${var.db_port}"
+  db_port              = var.db_port
 }
 
 module "cloudwatch" {
   source      = "./modules/cloudwatch"
-  name_prefix = "${var.name_prefix}"
+  name_prefix = var.name_prefix
 }
 
 module "ec2-sprint0" {
   source                  = "./modules/ec2"
-  dev_instance_type       = "${var.dev_instance_type}"
-  dev_ami                 = "${var.dev_ami}"
-  key_name                = "${var.key_name}"
+  dev_instance_type       = var.dev_instance_type
+  dev_ami                 = var.dev_ami
+  key_name                = var.key_name
   bastion_sg_id           = ["${module.security-group-sprint0.bastion_sg_id}"]
-  public1_subnet_id       = "${module.network-sprint-0.public1_subnet_id}"
-  public2_subnet_id       = "${module.network-sprint-0.public2_subnet_id}"
-  name_prefix             = "${var.name_prefix}"
+  public1_subnet_id       = module.network-sprint-0.public1_subnet_id
+  public2_subnet_id       = module.network-sprint-0.public2_subnet_id
+  name_prefix             = var.name_prefix
   sprint0_public_sg       = ["${module.security-group-sprint0.sprint0_public_sg}"]
-  elb_healthy_threshold   = "${var.elb_healthy_threshold}"
-  elb_unhealthy_threshold = "${var.elb_unhealthy_threshold}"
-  elb_timeout             = "${var.elb_timeout}"
-  elb_interval            = "${var.elb_interval}"
+  elb_healthy_threshold   = var.elb_healthy_threshold
+  elb_unhealthy_threshold = var.elb_unhealthy_threshold
+  elb_timeout             = var.elb_timeout
+  elb_interval            = var.elb_interval
   sprint0_private_sg      = ["${module.security-group-sprint0.sprint0_private_sg}"]
-  private1_subnet_id      = "${module.network-sprint-0.private1_subnet_id}"
-  lc_instance_type        = "${var.lc_instance_type}"
-  private2_subnet_id      = "${module.network-sprint-0.private2_subnet_id}"
-  zone_id                 = "${var.zone_id}"
-  hosted_zone_name        = "${var.hosted_zone_name}"
-  bucket                  = "${var.bucket}"
-  project                 = "${var.project}"
-  branch                  = "${var.branch}"
+  private1_subnet_id      = module.network-sprint-0.private1_subnet_id
+  lc_instance_type        = var.lc_instance_type
+  private2_subnet_id      = module.network-sprint-0.private2_subnet_id
+  zone_id                 = var.zone_id
+  hosted_zone_name        = var.hosted_zone_name
+  bucket                  = var.bucket
+  project                 = var.project
+  branch                  = var.branch
 }
 
 # module "rds" {
