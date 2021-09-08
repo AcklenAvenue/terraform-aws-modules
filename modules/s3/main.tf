@@ -146,11 +146,3 @@ resource "aws_cloudfront_distribution" "frontend_s3_distribution" {
     ssl_support_method             = "sni-only"
   }
 }
-
-resource "aws_s3_bucket_object" "object1" {
-  for_each = fileset("build/", "*")
-  bucket   = aws_s3_bucket.web_bucket.id
-  key      = each.value
-  source   = "../../../build/${each.value}"
-  etag     = filemd5("../../../build/${each.value}")
-}
