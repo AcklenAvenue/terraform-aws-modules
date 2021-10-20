@@ -63,3 +63,8 @@ variable "encryption_key" {
   type        = string
   sensitive   = true
 }
+
+variable "enable_schedule_shutdown" {
+  description = "When true, EC2 autoscaling group will reduce to 0 6PM and restore at 7AM (America/Tegucigalpa)."
+  type        = bool
+}

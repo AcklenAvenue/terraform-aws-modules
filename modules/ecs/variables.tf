@@ -58,3 +58,8 @@ variable "subnet_ids" {
   description = "A list of subnet IDs to launch resources in"
   type        = list(string)
 }
+
+variable "enable_schedule_shutdown" {
+  description = "When true, EC2 autoscaling group will reduce to 0 6PM and restore at 7AM (America/Tegucigalpa)."
+  type        = bool
+}
