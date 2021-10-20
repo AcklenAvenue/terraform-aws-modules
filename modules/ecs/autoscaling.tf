@@ -89,7 +89,7 @@ resource "aws_autoscaling_group" "autoscaling_group" {
 resource "aws_autoscaling_schedule" "schedule-turnoff" {
   count                  = var.enable_schedule_shutdown ? 1 : 0
   autoscaling_group_name = aws_autoscaling_group.autoscaling_group.name
-  scheduled_action_name  = "Shutdown-Schedule"
+  scheduled_action_name  = "Shutdown-Schedule-${var.project}"
   recurrence             = var.server_shutdown_cron
   time_zone              = var.server_schedule_timezone
   min_size               = 0
@@ -100,7 +100,7 @@ resource "aws_autoscaling_schedule" "schedule-turnoff" {
 resource "aws_autoscaling_schedule" "schedule-turnon" {
   count                  = var.enable_schedule_shutdown ? 1 : 0
   autoscaling_group_name = aws_autoscaling_group.autoscaling_group.name
-  scheduled_action_name  = "Turn-On-Schedule"
+  scheduled_action_name  = "Turn-On-Schedule-${var.project}"
   recurrence             = var.server_turn_on_cron
   time_zone              = var.server_schedule_timezone
   min_size               = var.min_size
