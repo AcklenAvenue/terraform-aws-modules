@@ -60,6 +60,25 @@ variable "subnet_ids" {
 }
 
 variable "enable_schedule_shutdown" {
-  description = "When true, EC2 autoscaling group will reduce to 0 6PM and restore at 7AM (America/Tegucigalpa)."
+  description = "When true, EC2 autoscaling group will reduce at desired time."
   type        = bool
+  default     = false
+}
+
+variable "server_shutdown_cron" {
+  description = "Cron expression for autoscaling shutdown schedule"
+  type        = string
+  default     = "0 18 * * 1-5"
+}
+
+variable "server_turn_on_cron" {
+  description = "Cron expression for autoscaling turn on schedule"
+  type        = string
+  default     = "0 7 * * 1-5"
+}
+
+variable "server_schedule_timezone" {
+  description = "Time zone for server schedule cron expression"
+  type        = string
+  default     = "America/Tegucigalpa"
 }
