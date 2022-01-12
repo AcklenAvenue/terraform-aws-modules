@@ -35,7 +35,7 @@ locals {
 
 resource "aws_route53_record" "frontend-alias-dns-record" {
   zone_id = var.zone_id
-  name    = "${var.name_prefix}-frontend.${var.hosted_zone_name}"
+  name    = "${var.name_prefix}.${var.hosted_zone_name}"
   type    = var.record_type
   alias {
     name                   = aws_cloudfront_distribution.frontend_s3_distribution.domain_name
@@ -59,7 +59,7 @@ resource "aws_cloudfront_distribution" "frontend_s3_distribution" {
     }
   }
 
-  aliases = ["${var.name_prefix}-frontend.${var.hosted_zone_name}"]
+  aliases = ["${var.name_prefix}.${var.hosted_zone_name}"]
 
   enabled             = var.cf_distrib_enabled
   is_ipv6_enabled     = var.cf_distrib_ipv6
