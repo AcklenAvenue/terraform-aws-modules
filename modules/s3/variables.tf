@@ -15,7 +15,7 @@ variable "index_doc" {
   description = "Amazon S3 returns this index document when requests are made to the root domain or any of the subfolders"
 }
 variable "error_doc" {
-  default     = "index.html"
+  default     = "error.html"
   description = "An absolute path to the document to return in case of a 4XX error"
 }
 #locals

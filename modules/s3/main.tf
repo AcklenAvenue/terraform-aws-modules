@@ -1,31 +1,44 @@
 resource "aws_s3_bucket" "web_bucket" {
   bucket        = var.name
-  acl           = var.bucket_acl
   force_destroy = var.bucket_destroy
-
-  policy = <<POLICY
-{
-    "Version": "2012-10-17",
-    "Statement": [
-        {
-            "Sid": "Allow Public Access to All Objects",
-            "Effect": "Allow",
-            "Principal": "*",
-            "Action": "s3:GetObject",
-                  "Resource": "arn:aws:s3:::${var.name}/*"
-        }
-    ]
 }
-POLICY
 
-  website {
-    index_document = var.index_doc
-    error_document = var.error_doc
+resource "aws_s3_bucket_policy" "access" {
+  bucket = aws_s3_bucket.web_bucket.id
+  policy = data.aws_iam_policy_document.policy.json
+}
+
+data "aws_iam_policy_document" "policy" {
+  statement {
+    principals {
+      type        = "AWS"
+      identifiers = ["*"]
+    }
+
+    actions = [
+      "s3:GetObject"
+    ]
+
+    resources = [
+      "${aws_s3_bucket.web_bucket.arn}/*",
+    ]
+  }
+}
+
+resource "aws_s3_bucket_acl" "acl" {
+  bucket = aws_s3_bucket.web_bucket.id
+  acl    = var.bucket_acl
+}
+
+resource "aws_s3_bucket_website_configuration" "website" {
+  bucket = aws_s3_bucket.web_bucket.bucket
+
+  index_document {
+    suffix = var.index_doc
   }
 
-  tags = {
-    Name    = var.name_prefix
-    Project = var.project
+  error_document {
+    key = var.error_doc
   }
 }
 
@@ -43,7 +56,7 @@ resource "aws_route53_record" "frontend-alias-dns-record" {
     evaluate_target_health = var.eval_target_health
   }
 
-  depends_on = ["aws_cloudfront_distribution.frontend_s3_distribution"]
+  depends_on = [aws_cloudfront_distribution.frontend_s3_distribution]
 }
 
 resource "aws_cloudfront_distribution" "frontend_s3_distribution" {
